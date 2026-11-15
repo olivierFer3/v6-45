@@ -48,7 +48,7 @@ NOT yet reviewed by a human mathematician.**
 | `verifier/u_bounds.py` | exact recomputation of u(n) ≤ B(n) for 22 ≤ n ≤ 46 (AMP, Schade, Ágoston–Pálvölgyi Prop. 12) |
 | `scripts/reproduce.sh` | full rerun with a new label, followed by a byte comparison with the shipped files |
 | `scripts/make_figure.py` | figure of the note, with a zoom on one island (matplotlib; no role in the proof) |
-| `proofs/preuves.md`, `proofs/relecture_preuves.md` | written proofs of the certification steps, and their AI review (in French), updated to the distributed code |
+| `proofs/preuves.md`, `proofs/relecture_preuves.md`, `proofs/relecture_preuves_v4.md` | written proofs of the certification steps (in French), updated to the distributed code; the earlier AI review; and a second AI review by an agent that wrote neither the code nor the proofs (no decisive error; its two completions are integrated) |
 | `note/` | the note (PDF, LaTeX source, figure) |
 | `SHA256SUMS` | SHA-256 of every file of the repository |
 
@@ -193,7 +193,7 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
   graphs*, arXiv:2303.14714v1; Geombinatorics 32(2) (2022), 72. They replaced the disks of Gwyn–Stavrianos
   by the rounded dodecagons of Croft's tiling, rounded the bounds up and used the AP bound, obtaining
   e6 ≥ 182 and v6 ≥ 42.
-- **Polymath16 thread** (seventeenth thread, comments of 28 and 30 June 2022, user ag24ag24): the
+- **Polymath16 thread** (seventeenth thread, comments of 28 and 30 June 2022 by the user ag24ag24 of the Polymath16 project): the
   hope for "a more impressive value than 42 using good 5-tilings", and the suggestion to take into
   account "regions that cannot contain a vertex of a mono edge".
 - **P. Ágoston, D. Pálvölgyi**, *An improved constant factor for the unit distance problem*,
@@ -206,7 +206,7 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
 
 The construction, the certification code, the proofs and the note were produced with Claude Code
 (Anthropic). Additional AI agents and ChatGPT (OpenAI) performed cross-checks: literature search, a
-reading of the arguments, execution of the verifiers and an independent Monte Carlo estimate of p5.
+reading of the arguments and execution of the verifiers.
 These checks are AI-assisted and may share blind spots; no human mathematician has reviewed this
 work yet.
 

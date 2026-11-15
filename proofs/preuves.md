@@ -109,8 +109,10 @@ Le vérificateur indépendant fait le même test, réécrit en `fractions.Fracti
 
 *Preuve.*
 1. [CONNU + A. M. Andrew, *Another efficient algorithm for convex hulls in two dimensions*, Inform. Process. Lett. 9 (1979) 216–219.] Pour un ensemble fini S de points non tous alignés, la chaîne monotone, avec les tests de virage « ≤ 0 », renvoie la liste des points extrémaux de conv(S) dans le sens direct, chacun une fois. Si S est aligné, elle renvoie au plus 2 points.
-2. `equals_cyclically` exige len(P) = len(hull(P)). Comme hull(P) est calculé sur `set(P)` et ne contient que des points distincts, P n'a pas de sommet répété ; comme n ≥ 3 (`all_left_turns`), S = set(P) n'est pas aligné.
+2. `equals_cyclically` exige len(P) = len(hull(P)). Comme hull(P) est calculé sur `set(P)` et ne contient que des points distincts, P n'a pas de sommet répété. De plus len(hull(P)) = n ≥ 3, et la chaîne monotone renvoie au plus 2 points pour un ensemble aligné (point 1) : S = set(P) n'est donc pas aligné. (Formulation corrigée en session 4 bis : c'est len(hull) ≥ 3, et non n ≥ 3 seul, qui exclut l'alignement.)
 3. P est une rotation cyclique de hull(P) : c'est donc la liste des points extrémaux de conv(P), dans le sens direct. La ligne polygonale qui les relie dans cet ordre est ∂conv(P). ∎
+
+**Remarque (indépendance limitée).** La fonction `hull` de `verifier/verify.py` est le même algorithme, presque ligne pour ligne, que celle de `certifier/geometry.py`. Elle est correcte (point 1), mais une erreur d'implémentation serait commune aux deux vérifications.
 
 Dans ce test, `all_left_turns` est redondant (il découle de l'égalité avec l'enveloppe sans points alignés), mais il ne coûte rien. La condition qui manquait en session 3 est l'égalité à l'enveloppe : un pentagramme (sommets d'un pentagone régulier visités dans l'ordre 0, 2, 4, 1, 3) a tous ses virages positifs, mais son enveloppe est le pentagone 0, 1, 2, 3, 4, qui n'en est pas une rotation cyclique ; il est donc rejeté. [VÉRIFIÉ NUMÉRIQUEMENT : contrôle de session 4, `all_left_turns` = vrai et `is_strictly_convex` = faux sur un pentagramme à sommets rationnels.]
 
@@ -132,7 +134,7 @@ Le vérificateur indépendant refait (V1)–(V3) en `Fraction` (étapes E1–E3 
 
 Pour t = a·g1 + b·g2, on a |det(g2, t)| = |a|·|det(g2, g1)| = |a|·|C|, d'où |a|·|C| ≤ |t|·|g2| ≤ ρ·|g2|. De même |b|·|C| ≤ ρ·|g1|. `core.translation_bounds` renvoie amax = ⌊ρ|g2|/|C|⌋, le plus grand entier tel que amax²·|C|² ≤ ρ²·|g2|² (test exact), et bmax de même. Hors de ce rectangle d'indices, les boules ne se rencontrent pas. Les couples sautés par le test des boules (`continue` dans `core.verify`) ont aussi des boules disjointes. (V3) vaut donc pour **tous** les (i, j, g) avec (j, g) ≠ (i, 0).
 
-Par ailleurs, `intersection` (`certifier/geometry.py`) renvoie le polygone exact P ∩ (P_j + t) (§ (c).4.7). Son aire est nulle si et seulement si les intérieurs sont disjoints : l'intersection de deux convexes d'intérieurs non disjoints est d'intérieur non vide.
+Par ailleurs, `intersection` (`certifier/geometry.py`) renvoie le polygone exact P ∩ (P_j + t) lorsque cette intersection est d'aire > 0 (§ (c).4.7), et une aire calculée nulle lorsqu'elle est d'intérieur vide (lemme 0.1 bis ci-dessous). Son aire est nulle si et seulement si les intérieurs sont disjoints : l'intersection de deux convexes d'intérieurs non disjoints est d'intérieur non vide.
 
 **Lemme 0.1.** Sous (V1)–(V3), la fonction f(x) = Σ_{i, g ∈ G} 1_{P_i + g}(x) vaut 1 presque partout. Autrement dit, les translatés P_i + g recouvrent le plan, et leurs intérieurs sont deux à deux disjoints, à un ensemble de mesure nulle près.
 
@@ -545,3 +547,38 @@ Un audit externe n'a trouvé aucune erreur mathématique, mais a demandé que ce
 5. **Renvois.** Tous les renvois aux fichiers de travail des sessions 2 et 3 sont remplacés par les fichiers et fonctions du dépôt distribué (table de correspondance en tête). Les numéros de ligne sont supprimés : ils renvoient à des fichiers qui ne sont pas distribués.
 6. **Publication.** Les chemins locaux et les commandes d'exécution propres à la machine de travail ont été retirés ; les chemins sont relatifs à la racine du dépôt.
 7. **Statuts.** Les étiquettes sont [DÉMONTRÉ ICI], [CONNU + référence], [VÉRIFIÉ NUMÉRIQUEMENT], [À VÉRIFIER]. Les contrôles numériques de session 4 cités (pentagramme, identité de signe, gradient sur polygones aléatoires, identité d'accroissement) ont été exécutés avec les fonctions du dépôt, sans le modifier ; leur script n'est pas distribué.
+
+## Compléments de la relecture indépendante (session 4 bis, 15 novembre 2026)
+
+Une relecture par un sous-agent qui n'avait écrit ni le code ni ces preuves (`relecture_preuves_v4.md`) n'a trouvé
+aucune erreur décisive. Elle demandait deux compléments, intégrés ici, et des formulations (lemme 0.0 étape 2 ; remarque
+sur `hull` au § 0.0).
+
+### Lemme 0.1 bis (aire calculée nulle ⟺ intersection d'intérieur vide) [DÉMONTRÉ ICI]
+
+Soient P et K = Q − u deux polygones convexes à sommets rationnels, et I = P ∩ K. Si I est d'intérieur vide, l'aire
+calculée par `area(intersection(P, Q − u))` est nulle (ou `intersection` renvoie moins de 3 sommets).
+
+*Preuve.* `intersection` coupe P successivement par les demi-plans de K, avec `clip`. Chaque sommet émis par `clip` est
+soit un sommet du polygone d'entrée qui vérifie le demi-plan, soit le point d'intersection d'une arête d'entrée avec la
+droite de coupe. Dans les deux cas, il appartient au polygone d'entrée et au demi-plan fermé. Par récurrence sur les
+demi-plans, tous les sommets de la sortie finale appartiennent à I. Si I est d'intérieur vide, c'est un ensemble convexe
+contenu dans une droite (vide, un point ou un segment) : tous les sommets de la sortie sont alignés, et la formule du
+lacet donne une aire nulle. Les calculs sont rationnels exacts : aucun arrondi n'intervient. ∎
+
+Avec le lemme SH (aire vraie > 0 ⇒ sortie = bord exact de I), on obtient : **aire calculée > 0 ⟺ aire vraie > 0**, et
+l'aire calculée est alors l'aire exacte. C'est ce qu'utilisent `core.verify` (§ 0.1), le choix `use_m2 = (A0 == 0)` de
+`core.box_bound` (borne (M1) appliquée seulement si A0 > 0 est vrai) et la borne (M2).
+
+### Contrôles numériques non distribués
+
+Les mentions [VÉRIFIÉ NUMÉRIQUEMENT] suivantes renvoient à des scripts de contrôle des sessions 3 et 4, **qui ne sont
+pas dans ce dépôt**. Elles sont donc **non reproductibles depuis le dépôt**, et aucune n'est nécessaire à la preuve :
+- le pentagramme rejeté par `is_strictly_convex` (§ 0.0) ;
+- les tirages exacts de l'identité de signe du § (a) ;
+- les comparaisons du gradient (`area_and_gradient` contre Cyrus–Beck ou contre des différences finies) et l'identité
+  d'accroissement du § (c).4 ;
+- les distances minimales toutes couleurs de la session 3.
+
+Les seuls contrôles reproductibles depuis le dépôt sont ceux de `verifier/verify.py` (E1–E6, N), de
+`certifier/recompute.py` et de `verifier/u_bounds.py`.
