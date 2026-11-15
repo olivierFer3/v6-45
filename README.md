@@ -192,9 +192,10 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
 - **A. D. N. J. de Grey, J. Parts**, *On lower bounds of the order of k-chromatic unit distance
   graphs*, arXiv:2303.14714v1; Geombinatorics 32(2) (2022), 72. They replaced the disks of Gwyn–Stavrianos
   by the rounded dodecagons of Croft's tiling, rounded the bounds up and used the AP bound, obtaining
-  e6 ≥ 182 and v6 ≥ 42. In the Polymath16 seventeenth thread, de Grey (as ag24ag24) hoped on
-  28 June 2022 for "a more impressive value than 42 using good 5-tilings", and on 30 June 2022
-  suggested taking into account "regions that cannot contain a vertex of a mono edge".
+  e6 ≥ 182 and v6 ≥ 42.
+- **Polymath16 thread** (seventeenth thread, comments of 28 and 30 June 2022, user ag24ag24): the
+  hope for "a more impressive value than 42 using good 5-tilings", and the suggestion to take into
+  account "regions that cannot contain a vertex of a mono edge".
 - **P. Ágoston, D. Pálvölgyi**, *An improved constant factor for the unit distance problem*,
   arXiv:2006.06285v3; Studia Sci. Math. Hungar. 59 (2022) 40–57. This is the source of Prop. 12.
 - **B. Alexeev, D. G. Mixon, H. Parshall**, *The Erdős unit distance problem for small point sets*,
