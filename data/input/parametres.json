@@ -1,0 +1,49 @@
+{
+ "conventions": "Repere orthonorme (x,y). R = D/2 (rayon circonscrit), s = sqrt(3) R. v1 = (3R/2, s/2), v2 = (0, s). Lambda = Z v1 + Z v2 (centres des hexagones). Couleur de l'hexagone de centre i v1 + j v2 : (i mod 2, j mod 2).",
+ "H4": {
+  "D": 1.133523
+ },
+ "DGP": {
+  "D": 1.1335,
+  "x_croft": 0.965532,
+  "pas": 1.965532,
+  "rotation_rad": 0.1,
+  "rayon_disque": 0.5,
+  "apotheme_hexagone": 0.482766
+ },
+ "DISQ": {
+  "D": 1.1344206846399862,
+  "centre_en_unites_de_s": [
+   0.0,
+   0.49987419837060276
+  ],
+  "rayon_disque_r": 0.4849824395464787,
+  "apotheme_a": 0.4849761618346483,
+  "normales_rad": [
+   0.5235987755982988,
+   1.5707963267948966,
+   2.6179938779914944
+  ]
+ },
+ "C2L_annexe": {
+  "D": 1.133523,
+  "centre_en_unites_de_s": [
+   0.0,
+   0.5
+  ],
+  "rayon_disque_r": 0.5,
+  "apotheme_a": "(2 s - 1)/2",
+  "normales_rad": [
+   0.5235987755982988,
+   1.5707963267948966,
+   2.6179938779914944
+  ]
+ },
+ "ILE": {
+  "D": 1.1323504765562433,
+  "fichiers": [
+   "ILE_hexagones.json",
+   "ILE_ile.json"
+  ]
+ }
+}

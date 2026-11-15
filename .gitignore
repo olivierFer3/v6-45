@@ -1,0 +1,9 @@
+out/
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.aux
+*.log
+*.out
+*.toc

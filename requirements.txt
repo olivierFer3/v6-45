@@ -1,0 +1,5 @@
+# Versions used for the certificates and for the reproduction test (Python 3.12.3, Linux x86_64).
+python-flint==0.9.0   # FLINT/Arb: exact rationals (fmpq) and ball arithmetic (arb); certifier only
+numpy==2.5.4          # verifier (numerical check)
+shapely==2.1.2        # verifier (numerical check); bundles GEOS 3.13.1
+# Optional, only for scripts/make_figure.py: matplotlib (the figure was made with matplotlib 3.6.3)
