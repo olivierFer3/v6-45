@@ -18,15 +18,15 @@
 \newcommand{\Z}{\mathbb{Z}}
 
 \title{Every non-5-colourable unit-distance graph in the plane\\ has at least 204 edges and at least 45 vertices}
-\author{[Author]}
+\author{olivierFer3}
 \date{November 2026 \quad (preprint, not yet reviewed by a human mathematician)}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We prove that every finite unit-distance graph in the Euclidean plane that is not
-$5$-colourable has at least $204$ edges and at least $45$ vertices. The previous best bounds
+We give a computer-assisted proof that every finite unit-distance graph in the Euclidean plane that
+is not $5$-colourable has at least $204$ edges and at least $45$ vertices. The previous best bounds
 were $182$ edges and $42$ vertices (de Grey--Parts). The proof combines the averaging argument of
 Gwyn--Stavrianos with an explicit periodic $5$-colouring whose fifth colour sits on the midpoints of
 one hexagon edge out of four, a computer-assisted upper bound
@@ -48,20 +48,24 @@ at least $45$ vertices.
 
 In the notation of \cite{dGP}, $e_6\ge204$ and $v_6\ge45$. The statement is unconditional: it says
 nothing about the existence of such graphs. These quantities are finite if and only if
-$\chi(\R^2)\ge6$. This has been announced in an OpenAI preprint \cite{OAI}, which we have not
-checked independently. A simpler colouring (DISQP32 below) already gives $e_6\ge193$ and $v_6\ge44$.
+$\chi(\R^2)\ge6$. The inequality $\chi(\R^2)\ge6$ has been announced in an OpenAI preprint \cite{OAI},
+which we have not checked; that preprint does not concern the bounds proved here. A simpler colouring (DISQP32 below) already gives $e_6\ge193$ and $v_6\ge44$.
 
 \paragraph{Previous work.} Gwyn and Stavrianos \cite{GS} introduced $p_k(c)$, the probability that a
 random unit segment is monochromatic for a $k$-colouring $c$ of the plane. They proved that a
 non-$k$-colourable unit-distance graph has at least $1/p_k(c)$ edges \cite[Lemma~2.10]{GS}. With four
 colours on regular hexagons, and a fifth colour on randomly translated disks
 \cite[Lemma~2.23]{GS}, they obtained $e_6\ge180$. De Grey and Parts \cite{dGP} replaced the disks by
-Croft's ``tortoises'' (see \cite{KMOR} for the construction), rounded up, and used the bounds on
-$u(n)$ of \cite{AP}. This gave $e_5\ge99$, $v_5\ge28$, $e_6\ge182$ and $v_6\ge42$. Their values of
-$p_k$ were computed numerically and were not certified. In the Polymath16 thread of 30 June 2022
-\cite{PM16}, de Grey suggested ``an adaptation of the paper's Lemma 6 taking into account the existence
-of regions that cannot contain a vertex of a mono edge'' and hoped for ``a more impressive value than
-42 using good 5-tilings''. We found no follow-up in the literature. The present construction is of
+the rounded dodecagons of Croft's tiling, of density about $0.229365$ (Croft's ``tortoises''; see
+\cite{KMOR} for the construction). They also corrected the rounding of the bounds, using
+$e_k\ge\lceil1/p_{k-1}\rceil$ where \cite{GS} had rounded down, and they used the bounds on $u(n)$ of
+\cite{AP}. This gave $e_5\ge99$, $v_5\ge28$, $e_6\ge182$ and $v_6\ge42$. Their values of $p_k$ were
+computed by numerical integration (Mathematica) and were not certified. In the Polymath16 thread
+\cite{PM16}, de Grey (commenting as \texttt{ag24ag24}) wrote on 28 June 2022 that he was ``hoping for a
+more impressive value than 42 using good 5-tilings rather than their Lemma 6''. On 30 June 2022 he
+reported that the hexagonal $5$-tiling he tried was worse and that ``something else is needed there --
+I think probably an adaptation of the paper's Lemma 6 taking into account the existence of regions
+that cannot contain a vertex of a mono edge''. We found no follow-up in the literature. The present construction is of
 this kind: the fifth colour is not translated at random but placed at fixed positions relative to the
 hexagons, on edge midpoints, and its shape is optimised. Related
 but different problems include the numerical optimisation of periodic colourings
@@ -84,7 +88,9 @@ $P_0(i,j)P_1(i,j)P_0(i{-}1,j{+}1)P_1(i{-}1,j)P_0(i{-}1,j)P_1(i,j{-}1)$, and thes
 The island $E$ is the polygon $W_0W_1\cdots W_{255}$ with
 $W_k=m+\rho_k(\cos\psi_k,\sin\psi_k)$, $\psi_k=2\pi k/256$, rounded to $10^{-12}$. Here $m$ is the
 midpoint of $P_1(0,0)P_0(-1,1)$, and $\rho$ is a piecewise-linear radial function with the symmetries
-$\rho(\psi)=\rho(-\psi)=\rho(\pi-\psi)$. The island has a nearly circular core of radius $0.43$--$0.48$
+$\rho(\psi)=\rho(-\psi)=\rho(\pi-\psi)$. This formula only records how the island was generated: the certified object is the colouring
+defined by the rational coordinates of the JSON files (see \emph{Exact definition} below). The island
+has a nearly circular core of radius $0.43$--$0.48$
 and four thin spikes ($\rho\approx0.58$) along the oblique edges. Its diameter is about $1.12$, and
 pairs of points of colour~$4$, inside one island or in two islands, are counted. Exact
 star-shapedness with respect to $m$ is checked: $\det(W_k-m,W_{k+1}-m)>0$ for all $k$, with total
@@ -106,9 +112,10 @@ Figure~\ref{fig} shows ILEP256.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.42\textwidth]{fig_cellule.pdf}
-\caption{ILEP256 around one period cell (dashed parallelogram spanned by $g_1,g_2$). Red, blue, green,
-yellow: colours $0$--$3$ on deformed hexagons. Purple: colour $4$ (the island). The bar has length $1$.}
+\includegraphics[width=0.98\textwidth]{fig_cellule.pdf}
+\caption{Left: ILEP256 around one period cell (dashed parallelogram spanned by $g_1,g_2$). Red, blue, green,
+yellow: colours $0$--$3$ on deformed hexagons. Purple: colour $4$ (the island). Right: zoom on the framed
+island, with the boundaries of the convex pieces of the certified colouring. The bars have length $1$.}
 \label{fig}
 \end{figure}
 
@@ -132,17 +139,30 @@ $1\le\mathbb E[\#\text{mono}]=|E(H)|\,p(c)$.
 \end{proof}
 
 The same argument fits the framework of \cite{GS}, which uses Jordan measure. The set
-$\{(x,\theta):c(x)=c(x+u(\theta))\}$ is Jordan-measurable, because its boundary lies in finitely many
-compact null sets, namely Lipschitz images of the boundaries of the pieces. By Lemma~\ref{lem:gs} and
+$S=\{(x,\theta)\in C\times[0,2\pi]:c(x)=c(x+u(\theta))\}$ is Jordan-measurable in $\R^3$. Indeed, let
+$Z$ be the union of the boundaries of the translates $P_i+g$. Two closed convex pieces with disjoint
+interiors cannot meet the interior of each other, so $c$ is locally constant outside $Z$. Hence
+$\partial S$ is contained in the union of $\partial(C\times[0,2\pi])$, of $\{(x,\theta):x\in Z\}$ and of
+$\{(x,\theta):x+u(\theta)\in Z\}$, restricted to the compact set $\overline C\times[0,2\pi]$. Only
+finitely many edges of $Z$ meet the bounded set $\overline C+\overline{B}(0,1)$. For each such edge
+$z:[0,1]\to\R^2$, the corresponding parts of these two sets are the images of the two-dimensional set
+$[0,1]\times[0,2\pi]$ under the Lipschitz maps $(t,\theta)\mapsto(z(t),\theta)$ and
+$(t,\theta)\mapsto(z(t)-u(\theta),\theta)$. They therefore have three-dimensional measure zero, and so
+does $\partial(C\times[0,2\pi])$. Thus $\partial S$ is a null set. By Lemma~\ref{lem:gs} and
 Theorem~\ref{thm:cert} below, a non-$5$-colourable graph has more than $203.11$ edges, hence at least $204$.
 DISQP32 gives at least $193$.
 
-\paragraph{Vertices.} \'Agoston and P\'alv\"olgyi \cite[Prop.~12]{AP} prove that a unit-distance graph
-with $n$ vertices, $m$ edges and all degrees at least $3$ satisfies
-$n^2-n\ge 4m-12n+24+\sum_v\binom{\deg v}{2}$. The sum is at least
+\paragraph{Vertices.} \'Agoston and P\'alv\"olgyi \cite[Prop.~12]{AP} state, for an \emph{extremal}
+unit-distance graph $G$ with $n$ vertices and $m=u(n)$ edges, the inequality
+$n^2-n\ge 4m-12n+24+\sum_v\binom{\deg v}{2}$. Its proof uses the construction of their Section~3:
+unit circles around the vertices are cut into $2m$ arcs by the points of $G$. This requires every
+vertex to have degree at least $3$, so that at least three points lie on each circle and every pair
+of points is joined by at most two arcs. Extremality ensures that any two points at unit distance are
+adjacent. We apply it only to an extremal graph $G$. If all degrees of $G$ are at least $3$, the
+inequality holds. Otherwise, deleting a vertex of degree at most $2$ gives $u(n)\le u(n-1)+2$, as
+noted in \cite[note~6, p.~12]{AP}. The sum is at least
 $J(n,2m)=(n-r)\binom{q}{2}+r\binom{q+1}{2}$, where $2m=qn+r$ with $0\le r<n$. Let $P(n)$ be the
-largest $m$ allowed by this inequality. If a vertex has degree at most $2$, then $u(n)\le u(n-1)+2$
-\cite[note~6]{AP}. Hence $u(n)\le B(n):=\max(P(n),B(n-1)+2)$. We start from the values and bounds of
+largest $m$ allowed by the inequality. Hence $u(n)\le B(n):=\max(P(n),B(n-1)+2)$. We start from the values and bounds of
 \cite{AMP} for $n\le22$, and also use Schade's lemma $u(n)\le\lfloor n\,u(n-1)/(n-2)\rfloor$
 \cite[Lemma~2]{AMP}, which is the better bound for $n\le32$. Recomputed in exact integer
 arithmetic, this gives $u(43)\le192$ and $u(44)\le198$, in agreement with \cite[note~3]{dGP}. For
@@ -179,13 +199,20 @@ of angles we also discard the pairs whose angular sector misses the box. The sec
 rigorously using ball arithmetic. Only translations with $|a|,|b|\le1$ can carry points at
 distance $\le1$, so the enumeration with $|a|,|b|\le2$ is complete.
 
-\paragraph{3. Bound on a box $I=[x_0\pi,x_1\pi]$.} (M1) By Brunn--Minkowski, $\sqrt{A_{PQ}}$ is
-concave on its support $\operatorname{int}(Q-P)$. Hence, for a rational $u_0$ with $A_0=A_{PQ}(u_0)>0$
-at which $A_{PQ}$ is differentiable with gradient $\nabla$, we have
-$A_{PQ}(u)\le A_0+\nabla\cdot d+(\nabla\cdot d)^2/(4A_0)$ for \emph{all} $u$, where $d=u-u_0$.
-The gradient is exact: it is $-\sum_f n_f\,|f\cap P|$ over the edges $f$ of $Q-u_0$, read off from the
-edges of $P\cap(Q-u_0)$ carried by $\partial P$. Differentiability holds when no edge of $P$ is
-collinear with an edge of $Q-u_0$, which is checked exactly. The right-hand side is a quadratic
+\paragraph{3. Bound on a box $I=[x_0\pi,x_1\pi]$.} (M1) By Brunn--Minkowski, the function $u\mapsto\sqrt{A_{PQ}(u)}$ (as a function of the translation
+vector $u\in\R^2$, not of $\theta$) is concave on the support $\operatorname{int}(Q-P)$ of $A_{PQ}$.
+Let $u_0$ be a rational point with $A_0=A_{PQ}(u_0)>0$ at which $A_{PQ}$ is differentiable, with
+gradient $\nabla$; only this anchor point needs to be a point of differentiability. Put $d=u-u_0$
+and $T=\sqrt{A_0}+\nabla\cdot d/(2\sqrt{A_0})$, the tangent of $\sqrt{A_{PQ}}$ at $u_0$. Concavity gives
+$\sqrt{A_{PQ}(u)}\le T$ on the support, and $T\ge\sqrt{A_{PQ}(u)}\ge0$ there. Hence
+$A_{PQ}(u)\le T^2=A_0+\nabla\cdot d+(\nabla\cdot d)^2/(4A_0)$. Outside the support, $A_{PQ}(u)=0\le T^2$.
+So the bound holds for \emph{all} $u$. The gradient is exact: translating $Q-u_0$ by $-d$ moves only the edges $f$ of $Q-u_0$,
+so $\nabla=-\sum_f n_f\,|f\cap P|$, with outer normals $n_f$. In the code, $P\cap(Q-u_0)$ is computed by
+Sutherland--Hodgman clipping of $P$ by the half-planes of $Q-u_0$, and each edge of the intersection is
+labelled as carried by $\partial P$ or by an edge of $Q-u_0$. Since the vectors (outer normal)$\times$(length)
+of the edges of a closed polygon sum to zero, $\nabla=\sum_e n_e\,|e|$ over the edges $e$ of the
+intersection labelled as carried by $\partial P$; this is the sum the code evaluates. Differentiability holds when no edge of $P$ is collinear with an edge of $Q-u_0$, which is
+checked exactly. The right-hand side is a quadratic
 polynomial in $(\cos\theta,\sin\theta)$ with rational coefficients, and its integral over $I$ is
 evaluated from closed-form moments in ball arithmetic (Arb via python-flint, \cite{flint}). (M2) If
 a rational rectangle $K$ contains the arc $u(I)$, then $A_{PQ}(u(\theta))\le|P\cap(Q\oplus(-K))|$ on
@@ -196,40 +223,48 @@ ILEP256, which take about $8$\,s and $155$\,s on a laptop.
 
 \paragraph{Checks.} The written proofs of steps 1--3 were reviewed by a separate AI agent, including
 the Sutherland--Hodgman clipping with edge labels used for the gradient. A second verifier, which does
-not import the certifier, redoes the tiling checks in Python \texttt{Fraction} arithmetic. It also
-recomputes every box integral in floating point (GEOS areas, explicit breakpoints, Gauss--Legendre).
-Each certified box bound exceeds this integral, by at least $2.3\cdot10^{-9}$, while the
-floating-point error is below $10^{-18}$. Independently of the certificate, the same verifier
-recomputes $p(\mathrm{ILEP256})\approx0.0049197$. It also checks the final rational arithmetic with
-the lower bound $\pi>314159265358979/10^{14}$. This shows that no contribution is missing, but it is a
-consistency check, not a second proof.
+not import the certifier, checks exactly, in Python \texttt{Fraction} arithmetic, the geometry of the
+tiling (convexity, areas, disjointness, completeness of the translations), the list of contributing
+pairs and the rational additions of the box bounds, including the final comparison with the lower
+bound $\pi>314159265358979/10^{14}$. It does \emph{not} recertify in interval arithmetic each of the
+$1280$ box bounds ($256+1024$): these rest on the Arb certifier alone. The second verifier also
+recomputes every box integral in floating point (GEOS areas, explicit breakpoints, Gauss--Legendre),
+and each certified box bound exceeds this integral, by at least $2.3\cdot10^{-9}$. The
+Gauss--Legendre computations with 6 and 10 nodes agree to about $10^{-18}$. This agreement is a
+numerical consistency check, not a rigorous bound on quadrature or GEOS errors. The rigorous upper
+bounds rely exclusively on exact rational arithmetic and Arb interval enclosures. Independently of the
+certificate, the same verifier recomputes $p(\mathrm{ILEP256})\approx0.0049197$. This shows that no
+contribution is missing, but it is a consistency check, not a second proof.
 
 \section{Limitations and remarks}
 
 \begin{itemize}
 \item \textbf{No human review yet.} The certificate, the proofs and the code have been checked only by
-independent AI agents. The proof rests on the inclusion principle of Arb, which is standard and
-documented.
+AI-assisted cross-checks, which may share blind spots. The proof rests on the inclusion principle of
+Arb, which is standard and documented.
 \item \textbf{Novelty.} To our knowledge $e_6\ge183$ and $v_6\ge43$ have not appeared before.
 Our search covered arXiv, the tables of contents of Geombinatorics 2022--2026, the Polymath16 threads and
 general web search. It is not exhaustive: we could not read the full text of recent Geombinatorics
 issues, nor use Google Scholar.
 \item \textbf{$\chi(\R^2)\ge6$} is not established independently here. Theorem~\ref{thm:main} holds in
 any case.
-\item \textbf{$v_6\ge46$} would require $p_5<1/205$. The floating-point value $0.0049198$ of ILEP256
-does not allow it.
+\item \textbf{$v_6\ge46$} would require $p_5<1/205$. The floating-point value $p(\mathrm{ILEP256})\approx0.0049197$
+does not allow it ($1/205\approx0.0048780$).
 \end{itemize}
 
 \begin{remark}[$v_5\ge29$]
 From $e_5\ge99$ \cite{dGP} and $u(28)\le96$ \cite[Thm.~1(b)]{AMP}, it follows that every
-non-$4$-colourable unit-distance graph has at least $29$ vertices. The same certifier, applied to the
-four-colour hexagon tiling with $D=1.133523$, gives $p_4\le101531397/10^{10}<1/98$, which confirms
-$e_5\ge99$. This last computation has not been re-checked independently.
+non-$4$-colourable unit-distance graph has at least $29$ vertices. This remark uses only the published
+bounds of \cite{dGP} and \cite{AMP}. As a secondary computation, not audited and not part of the
+results of this note, the same certifier applied to the four-colour hexagon tiling with $D=1.133523$
+gives $p_4\le101531397/10^{10}<1/98$, consistent with $e_5\ge99$.
 \end{remark}
 
-\paragraph{Use of AI.} The computations, the certification code and this note were produced with
-Claude Code (Anthropic). ChatGPT (OpenAI) was used only for literature search. The certificate has
-been re-checked by independent AI agents; it has not yet been reviewed by a human mathematician.
+\paragraph{Use of AI.} The construction, the certification code, the proofs and this note were
+produced with Claude Code (Anthropic). Additional AI agents and ChatGPT (OpenAI) performed
+cross-checks: literature search, a reading of the arguments, execution of the verifiers and an
+independent Monte Carlo estimate of $p_5$. These checks are AI-assisted and may share blind spots; no
+human mathematician has reviewed this work yet.
 Code and certificates: see the accompanying repository (\texttt{README.md}).
 
 \begin{thebibliography}{9}\small
@@ -251,7 +286,7 @@ mathematics: do machines dream of colored planes?}, arXiv:2501.18527v3 (ICML 202
 \bibitem{Parts} J.~Parts, \emph{What percent of the plane can be properly 5- and 6-colored?},
 arXiv:2010.12668; Geombinatorics 30(1).
 \bibitem{PM16} D.~G.~Mixon (blog), \emph{Polymath16, seventeenth thread: declaring victory}, comments of
-28 June--5 July 2022,
+28 June 2022 (6:58 pm) and 30 June 2022 (12:22 am) by \texttt{ag24ag24},
 \url{https://dustingmixon.wordpress.com/2021/02/01/polymath16-seventeenth-thread-declaring-victory/}.
 \end{thebibliography}
 \end{document}

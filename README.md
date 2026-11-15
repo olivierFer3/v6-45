@@ -5,14 +5,14 @@ has **at least 204 edges and at least 45 vertices** (in the notation of de Grey�
 e6 ≥ 204 and v6 ≥ 45). The previous best bounds were e6 ≥ 182 and v6 ≥ 42 (de Grey–Parts).
 A simpler colouring in this repository already gives e6 ≥ 193 and v6 ≥ 44.
 
-The statement holds whether or not such graphs exist. They exist if and only if χ(ℝ²) ≥ 6;
-this has been announced (OpenAI preprint, 23 Sept. 2026) but is not established independently
-here.
+The statement holds whether or not such graphs exist. They exist if and only if χ(ℝ²) ≥ 6.
+The inequality χ(ℝ²) ≥ 6 has been announced in an OpenAI preprint (23 Sept. 2026), which we have not
+checked; that preprint does not concern the bounds proved here.
 
 The mathematical write-up is in [`note/v6_45.pdf`](note/v6_45.pdf) (source `note/v6_45.tex`).
 
-**Status: computer-assisted proof, checked by independent AI agents, NOT yet reviewed by a human
-mathematician.**
+**Status: computer-assisted proof, with AI-assisted cross-checks only (which may share blind spots);
+NOT yet reviewed by a human mathematician.**
 
 ## The argument in three steps
 
@@ -44,10 +44,11 @@ mathematician.**
 | `certificates/*_certificat.json` | the certificates: boxes of angles θ = xπ, x ∈ [x0, x1], with a certified rational upper bound of ∫F over each box, and the final bound |
 | `data/input/` | floating-point inputs of the construction (hexagon displacements, island radii, DISQ parameters) |
 | `certifier/` | the certifier: `geometry.py` (exact convex geometry, Arb helpers), `core.py` (exact checks, pair enumeration, box bounds), `colourings.py`, `island.py` (constructions), `certify.py` (driver), `recompute.py` (recomputation from the JSON files) |
-| `verifier/verify.py` | **independent** verifier. It does not import the certifier and does not use python-flint: it uses `fractions.Fraction` for the exact checks and shapely/GEOS for the numerical check |
+| `verifier/verify.py` | second verifier. It does not import the certifier and does not use python-flint: it uses `fractions.Fraction` for the exact checks and shapely/GEOS for the numerical check |
 | `verifier/u_bounds.py` | exact recomputation of u(n) ≤ B(n) for 22 ≤ n ≤ 46 (AMP, Schade, Ágoston–Pálvölgyi Prop. 12) |
 | `scripts/reproduce.sh` | full rerun with a new label, followed by a byte comparison with the shipped files |
-| `scripts/make_figure.py` | figure of the note (matplotlib; no role in the proof) |
+| `scripts/make_figure.py` | figure of the note, with a zoom on one island (matplotlib; no role in the proof) |
+| `proofs/preuves.md`, `proofs/relecture_preuves.md` | written proofs of the certification steps, and their AI review (in French), updated to the distributed code |
 | `note/` | the note (PDF, LaTeX source, figure) |
 | `SHA256SUMS` | SHA-256 of every file of the repository |
 
@@ -80,7 +81,9 @@ estimate (no role in the proof).
 **`certifier/recompute.py`** recomputes every box bound from the JSON files alone. It uses the
 same library, so it is a recomputation, not an independent check.
 
-**`verifier/verify.py`** is independent of the certifier.
+**`verifier/verify.py`** does not import the certifier. It checks exactly the geometry, the pairs and
+the rational additions; it does **not** recertify in interval arithmetic each of the 1280 box bounds
+(256 + 1024), which rest on the Arb certifier alone.
 - **Exact checks** (`Fraction`):
   - E1: true strict convexity;
   - E2: areas;
@@ -92,9 +95,11 @@ same library, so it is a recomputation, not an independent check.
 - **Numerical check N** (floating point, not a proof). For every box, the integral of F is
   recomputed with GEOS areas, explicit breakpoints and Gauss–Legendre quadrature. Every certified
   box bound must exceed it.
-  - ILEP256: minimum margin 2.3·10⁻⁹, against an estimated float error ≤ 3·10⁻¹⁹. The independent
-    value is p ≈ 0.0049196874.
-  - DISQP32: minimum margin 5.0·10⁻⁹, independent value p ≈ 0.0051253154.
+  - ILEP256: minimum margin 2.3·10⁻⁹. The Gauss–Legendre computations with 6 and 10 nodes agree to
+    about 10⁻¹⁸; this agreement is a numerical consistency check, not a rigorous bound on quadrature
+    or GEOS errors. The rigorous upper bounds rely exclusively on exact rational arithmetic and Arb
+    interval enclosures. Recomputed value: p ≈ 0.0049196874.
+  - DISQP32: minimum margin 5.0·10⁻⁹, recomputed value p ≈ 0.0051253154.
 
 **Assumptions not checked by the code:**
 - the inclusion principle of Arb (standard, documented by FLINT);
@@ -121,7 +126,7 @@ python3 -B certifier/certify.py ILEP 1/203 1024 --pas 1 --proc 3 --rounds 6 --la
 cmp certificates/ILEP256_config.json out/ILEP256_new_config.json
 diff <(sed 's/"nom": "ILEP256_new"/"nom": "ILEP256"/' out/ILEP256_new_certificat.json) certificates/ILEP256_certificat.json
 
-# 3. recomputation and independent verification of the shipped certificates
+# 3. recomputation and second verification of the shipped certificates
 python3 -B certifier/recompute.py ILEP256 --dir certificates
 python3 -B verifier/verify.py ILEP256 --dir certificates
 python3 -B verifier/verify.py DISQP32 --dir certificates
@@ -166,7 +171,7 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
 ## Limitations
 
 - **No human review yet.** The certificate, the proofs and the code have been checked only by
-  independent AI agents.
+  AI-assisted cross-checks, which may share blind spots.
 - **The novelty search is not exhaustive.** It covered arXiv, the tables of contents of
   Geombinatorics 2022–2026, the Polymath16 threads and general web search. It did not cover the
   full text of recent Geombinatorics issues or Google Scholar.
@@ -175,9 +180,9 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
   here has p5 ≈ 0.00491969. A finer certificate for ILEP256 (2048 boxes, p5 ≤ 0.0049204506) was
   computed but is not included and not claimed.
 - **v5 ≥ 29.** It follows from e5 ≥ 99 (de Grey–Parts) and u(28) ≤ 96 (Alexeev–Mixon–Parshall,
-  Thm. 1(b)); see `verifier/u_bounds.py`. The certifier also gives p4 ≤ 0.0101531397 < 1/98 for
-  the 4-colour hexagon tiling, which confirms e5 ≥ 99. That computation is not included here and
-  has not been re-checked independently.
+  Thm. 1(b)); see `verifier/u_bounds.py`. As a secondary computation, not audited, not included
+  here and not part of the results, the certifier also gives p4 ≤ 0.0101531397 < 1/98 for the
+  4-colour hexagon tiling, consistent with e5 ≥ 99.
 
 ## Credits
 
@@ -185,10 +190,11 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
   problem*, arXiv:2008.07987v1 (2020); Geombinatorics 32(1) (2022). They introduced p_k, the
   edge bound of Lemma 2.10 and the hexagonal 4-colouring.
 - **A. D. N. J. de Grey, J. Parts**, *On lower bounds of the order of k-chromatic unit distance
-  graphs*, arXiv:2303.14714v1; Geombinatorics 32(2) (2022), 72. They obtained the previous bounds
-  e6 ≥ 182 and v6 ≥ 42, rounding up and using the AP bound. In the Polymath16 thread of 30 June
-  2022, de Grey suggested taking into account "regions that cannot contain a vertex of a mono
-  edge".
+  graphs*, arXiv:2303.14714v1; Geombinatorics 32(2) (2022), 72. They replaced the disks of Gwyn–Stavrianos
+  by the rounded dodecagons of Croft's tiling, rounded the bounds up and used the AP bound, obtaining
+  e6 ≥ 182 and v6 ≥ 42. In the Polymath16 seventeenth thread, de Grey (as ag24ag24) hoped on
+  28 June 2022 for "a more impressive value than 42 using good 5-tilings", and on 30 June 2022
+  suggested taking into account "regions that cannot contain a vertex of a mono edge".
 - **P. Ágoston, D. Pálvölgyi**, *An improved constant factor for the unit distance problem*,
   arXiv:2006.06285v3; Studia Sci. Math. Hungar. 59 (2022) 40–57. This is the source of Prop. 12.
 - **B. Alexeev, D. G. Mixon, H. Parshall**, *The Erdős unit distance problem for small point sets*,
@@ -197,9 +203,11 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
 
 ## Use of AI
 
-The computations, the certification code and this note were produced with Claude Code
-(Anthropic). ChatGPT (OpenAI) was used only for literature search. The certificate has been
-re-checked by independent AI agents; it has not yet been reviewed by a human mathematician.
+The construction, the certification code, the proofs and the note were produced with Claude Code
+(Anthropic). Additional AI agents and ChatGPT (OpenAI) performed cross-checks: literature search, a
+reading of the arguments, execution of the verifiers and an independent Monte Carlo estimate of p5.
+These checks are AI-assisted and may share blind spots; no human mathematician has reviewed this
+work yet.
 
 ## Licence
 
