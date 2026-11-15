@@ -1,0 +1,5 @@
+v6-45 -- reference state timestamped with OpenTimestamps
+commit: 8a20baea52172b4e50b91b55a9c0452b757c1e08
+tree: 71c73add29a65e3de3a91fca724ff68a48e9d73c
+sha256 note/v6_45.pdf (as in this commit): 54999dce799495b417ab6523e19ff0e2fb713663a66a103c879a12e8f5c98a32
+sha256 v6-45-audit-v5.zip (git archive of this commit): ca96346b016f41c73954bd684986e82d7945f2a91f87273a1de61ad618be0810
