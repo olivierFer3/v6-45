@@ -2,6 +2,10 @@
 
 Relecteur indépendant. Je n'ai écrit ni le code ni les preuves. Date : 2026-11-14, de 07:34:52 à 07:46:26, soit environ 12 min (horodatages du journal de session, non distribué), donc bien moins que l'heure prévue. Pour la durée, je n'ai pas de journal plus fin que ces deux horodatages.
 
+> **Encadré (ajouté le 15 novembre 2026).** Les réserves T1 à T9 ci-dessous sont celles de la relecture du
+> 14 novembre 2026 (session 3). Elles sont conservées telles quelles pour la traçabilité. Leur statut actuel (corrigé,
+> intégré ou non appliqué) est donné dans la section finale « Mise à jour du 15 novembre 2026 (session 4) ».
+
 *Document historique.* Les sections et verdicts ci-dessous sont ceux de la session 3. Le 15 novembre 2026 (session 4), les renvois aux fichiers de travail ont été remplacés par les fichiers et fonctions du dépôt distribué (commit `3af8dfe`), et les chemins locaux ont été retirés. Rien d'autre n'a été changé dans les sections 1 à 5 ; voir la section finale « Mise à jour du 15 novembre 2026 (session 4) ».
 
 ## Table de correspondance « ancien fichier/fonction → fichier/fonction actuels »

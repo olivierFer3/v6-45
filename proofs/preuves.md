@@ -142,7 +142,12 @@ Par ailleurs, `intersection` (`certifier/geometry.py`) renvoie le polygone exact
 1. Les bords ∂(P_i + g) forment une famille dénombrable de segments, donc un ensemble négligeable Z.
 2. Hors de Z, par (V3), un point appartient à au plus un intérieur, d'où f ≤ 1 p.p.
 3. f est G-périodique. Comme C est un domaine fondamental de G, on a Σ_g mes((X + g) ∩ C) = mes(X) pour tout X mesurable. D'où ∫_C f = Σ_i Σ_g mes((P_i + g) ∩ C) = Σ_i aire(P_i) = |C| par (V2).
-4. Donc ∫_C (1 − f) = 0 avec 1 − f ≥ 0 p.p., ce qui donne f = 1 p.p. sur C, puis partout par périodicité. ∎
+4. Donc ∫_C (1 − f) = 0 avec 1 − f ≥ 0 p.p., ce qui donne f = 1 p.p. sur C, puis partout par périodicité.
+5. **Recouvrement de tout le plan, frontières comprises.** La famille des translatés P_i + g est localement finie : une
+   boule bornée ne rencontre qu'un nombre fini de translatés, car G est un réseau et les P_i sont bornés. Chaque P_i + g
+   est fermé. La réunion d'une famille localement finie de fermés est fermée, donc son complément U est ouvert. Par le
+   point 4, U est de mesure nulle ; un ouvert de mesure nulle est vide. Les pièces recouvrent donc tout le plan,
+   frontières comprises, et la règle « pièce de plus petit indice » définit la couleur de **tout** point. ∎
 
 **Conséquences.**
 - La coloration c(x) = couleur de l'unique translaté qui contient x est définie hors de Z. Elle est G-périodique et mesurable. Sur les bords, on fixe la règle du README : x reçoit la couleur de la pièce de plus petit indice i telle que x ∈ P_i + G ; cette règle est G-périodique par construction.

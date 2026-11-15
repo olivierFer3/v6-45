@@ -92,9 +92,11 @@ $\rho(\psi)=\rho(-\psi)=\rho(\pi-\psi)$. This formula only records how the islan
 defined by the rational coordinates of the JSON files (see \emph{Exact definition} below). The island
 has a nearly circular core of radius $0.43$--$0.48$
 and four thin spikes ($\rho\approx0.58$) along the oblique edges. Its diameter is about $1.12$, and
-pairs of points of colour~$4$, inside one island or in two islands, are counted. Exact
-star-shapedness with respect to $m$ is checked: $\det(W_k-m,W_{k+1}-m)>0$ for all $k$, with total
-angle $2\pi$.
+pairs of points of colour~$4$, inside one island or in two islands, are counted. The island
+is star-shaped with respect to $m$: the determinants $\det(W_k-m,W_{k+1}-m)$ of consecutive vectors are
+checked to be positive exactly, while the total variation of the angle ($2\pi$) is checked numerically,
+with a tolerance of $10^{-9}$. The main certificate does not use this star-shapedness: it applies to the
+rational polygons actually produced, whose tiling properties are checked exactly (Section~4).
 
 \paragraph{DISQP32.} The hexagons are regular, up to the rounding of $s$, with $R=28360517/(5\cdot10^7)$.
 $E$ is a rational $32$-gon of circumradius $0.48498$ centred at $(0,\,122773743/(2.5\cdot10^8))$.
@@ -233,8 +235,8 @@ and each certified box bound exceeds this integral, by at least $2.3\cdot10^{-9}
 Gauss--Legendre computations with 6 and 10 nodes agree to about $10^{-18}$. This agreement is a
 numerical consistency check, not a rigorous bound on quadrature or GEOS errors. The rigorous upper
 bounds rely exclusively on exact rational arithmetic and Arb interval enclosures. Independently of the
-certificate, the same verifier recomputes $p(\mathrm{ILEP256})\approx0.0049197$. This shows that no
-contribution is missing, but it is a consistency check, not a second proof.
+certificate, the same verifier recomputes $p(\mathrm{ILEP256})\approx0.0049197$. This provides an independent numerical consistency check against missing contributions, but does not
+constitute a second rigorous proof.
 
 \section{Limitations and remarks}
 
