@@ -1,0 +1,39 @@
+=== ILEP_S6A : target p < 1/239 = 0.0041841004 ; start 2026-11-18T15:27:02
+  exact colouring written: certificates/ILEP_S6A_config.json
+  [exact] 523 convex pieces (true convexity: equal to their hull) ; sum of areas = |C| = 3.264636085785617
+  [exact] disjoint interiors: 78897 pairs of neighbouring pieces tested (|a|<=2, |b|<=2)
+  4754 pairs (P, Q) of the same colour whose support meets the unit circle (translations |a|<=3, |b|<=3)
+  preparation: 212.0 s
+  floating-point p (midpoint rule, 512 angles) = 0.0041077960  (1/p = 243.4395) [7.9 s]
+  round 0 : 1024 boxes (1024 new, 369.4 s) ; p <= 0.0041149782 ; midpoint estimate 0.0041078101 ; < target
+  final boxes: 1024 ; mean active pairs 1066.9 ; (M1) 50660 ; (M2) 1041817 ; boxes with u0 attempts > 0: 0
+  RESULT ILEP_S6A : p <= 41149783/10000000000 = 0.0041149783 ; 1/bound = 243.0146 ; target 1/239 : REACHED
+    bound < 1/192 : True
+    bound < 1/193 : True
+    bound < 1/198 : True
+    bound < 1/203 : True
+    bound < 1/205 : True
+  total time 589.3 s ; end 2026-11-18T15:36:04
+	Command being timed: "python -B certifier/certify.py ILEP 1/239 1024 --pas 1 --proc 3 --rounds 6 --label ILEP_S6A --out certificates"
+	User time (seconds): 1319.95
+	System time (seconds): 0.52
+	Percent of CPU this job got: 224%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:49.42
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 54512
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 141
+	Minor (reclaiming a frame) page faults: 37786
+	Voluntary context switches: 2356
+	Involuntary context switches: 75883
+	Swaps: 0
+	File system inputs: 27480
+	File system outputs: 976
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

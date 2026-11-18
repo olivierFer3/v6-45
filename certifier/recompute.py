@@ -67,7 +67,8 @@ def main():
     assert ph <= lis
     print(f"  all box bounds recomputed (<= certificate) ; p <= {cert['p_majorant_lisible']}"
           f" = {float(lis):.10f} CONFIRMED ; < 1/192 : {lis < fmpq(1, 192)} ; < 1/198 : {lis < fmpq(1, 198)} ;"
-          f" < 1/203 : {lis < fmpq(1, 203)} ; time {time.time() - t:.1f} s", flush=True)
+          f" < 1/203 : {lis < fmpq(1, 203)} ; < 1/205 : {lis < fmpq(1, 205)} ; < 1/232 : {lis < fmpq(1, 232)} ;"
+          f" < 1/239 : {lis < fmpq(1, 239)} ; < 1/246 : {lis < fmpq(1, 246)} ; time {time.time() - t:.1f} s", flush=True)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,8 @@
 """u_bounds.py -- exact recomputation of upper bounds B(n) >= u(n) (maximum number of edges of
-a unit-distance graph with n vertices) for 22 <= n <= 46, and of the resulting vertex bounds.
+a unit-distance graph with n vertices) for 22 <= n <= 52, and of the resulting vertex bounds.
+
+The values B(n) for 32 <= n <= 52 agree with the list of de Grey-Parts (arXiv:2303.14714,
+footnote 3): ..., 192, 198, 205, 212, 218, 225, 232, 239, 246, 254 for n = 43, ..., 52.
 
 Inputs (cited, not re-proved here):
   * u(22) <= 61                                   [Alexeev-Mixon-Parshall, arXiv:2412.11914, Sec. 3]
@@ -33,18 +36,22 @@ def P(n):
 def main():
     B = {22: 61}
     print(" n  Schade  AP=max(P,B(n-1)+2)  B(n)   [n^2-n, RHS(P), RHS(P+1)]")
-    for n in range(23, 47):
+    for n in range(23, 53):
         schade = (n * B[n - 1]) // (n - 2)
         ap = max(P(n), B[n - 1] + 2)
         B[n] = min(schade, ap)
         print(f"{n:3d} {schade:6d} {ap:12d} {B[n]:12d}   [{n * n - n}, {rhs(n, P(n))}, {rhs(n, P(n) + 1)}]")
     assert B[28] == 96 and B[43] == 192 and B[44] == 198
+    assert [B[n] for n in range(45, 51)] == [205, 212, 218, 225, 232, 239]   # used in version 2
+    assert B[51] == 246 and B[52] == 254
     expected_amp = [61, 66, 72, 78, 84, 90, 96, 103, 110]     # AMP Thm 1(b), n = 22..30
     assert [B[n] for n in range(22, 31)] == expected_amp
-    for E, label in ((99, "e5 >= 99"), (193, "e6 >= 193"), (204, "e6 >= 204")):
+    for E, label in ((99, "e5 >= 99"), (193, "e6 >= 193"), (204, "e6 >= 204"), (208, "e6 >= 208"),
+                     (235, "e6 >= 235"), (244, "e6 >= 244")):
         v = min(n for n in B if B[n] >= E)
         print(f"  {label} : every graph with <= {v - 1} vertices has <= {B[v - 1]} < {E} edges => v >= {v}")
-    print("  OK: u(28) <= 96, u(43) <= 192, u(44) <= 198 ; AMP Thm 1(b) reproduced for n = 22..30")
+    print("  OK: u(28) <= 96, u(43) <= 192, u(44) <= 198 ; u(45..50) <= 205, 212, 218, 225, 232, 239 ;"
+          " AMP Thm 1(b) reproduced for n = 22..30")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3 @@
+ILEP_S5B: 1024 boxes ; S/(pi_low |C|) = 0.0048271081 <= readable 24135541/5000000000 = 0.0048271082 : True
+  205 * readable = 0.9895571810 < 1 : True
+  212 * readable < 1 : False

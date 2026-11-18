@@ -1,0 +1,54 @@
+config ILEP1: 523 pieces, colours [0, 1, 2, 3, 4], island 512 vertices
+[R0] exact parameters of the JSON = rounding to 1/10^12 of the float inputs: OK
+[E1/E2] 523 pieces strictly convex CCW; sum of areas = |det(g1,g2)| = 3.264636085785617
+[I0] island star-shaped w.r.t. m, winding number 1 (exact), area 0.615272384648; min cross(m,W_k,W_k+1) = 1.140e-05
+     island reflex vertices: 250 ; island convex: False
+
+[H0] hexagon (0,0) colour 0: area 0.850852032576 (>0: True), simple True, reflex vertices [1], turns min/max -6.3216e-02/7.2262e-01
+[H1] split by the diagonal V1-V4: two strictly convex polygons (4 and 4 vertices), areas sum to area(H)
+[X] reflex vertex V1 = (0.182705,0.238851): strictly inside an island sector [(True, False)]
+[C1/C2] 90 pieces of colour 0: all inside hexagon (0,0), none meets an island interior
+[C3] area(H) - area(H & islands) = 0.603888462296223 ; sum pieces = 0.603888462296223 ; exact equality: True ; island area cut = 0.246963570280
+
+[H0] hexagon (1,0) colour 1: area 0.782154570522 (>0: True), simple True, reflex vertices [], turns min/max 1.8450e-01/3.2720e-01
+[C1/C2] 48 pieces of colour 1: all inside hexagon (1,0), none meets an island interior
+[C3] area(H) - area(H & islands) = 0.720990217312761 ; sum pieces = 0.720990217312761 ; exact equality: True ; island area cut = 0.061164353209
+
+[H0] hexagon (0,1) colour 2: area 0.848895175099 (>0: True), simple True, reflex vertices [4], turns min/max -6.4884e-02/7.2017e-01
+[H1] split by the diagonal V4-V1: two strictly convex polygons (4 and 4 vertices), areas sum to area(H)
+[X] reflex vertex V4 = (-0.140740,0.759055): strictly inside an island sector [(True, False)]
+[C1/C2] 88 pieces of colour 2: all inside hexagon (0,1), none meets an island interior
+[C3] area(H) - area(H & islands) = 0.603238498055907 ; sum pieces = 0.603238498055907 ; exact equality: True ; island area cut = 0.245656677043
+
+[H0] hexagon (1,1) colour 3: area 0.782734307589 (>0: True), simple True, reflex vertices [], turns min/max 1.8484e-01/3.2866e-01
+[C1/C2] 47 pieces of colour 3: all inside hexagon (1,1), none meets an island interior
+[C3] area(H) - area(H & islands) = 0.721246523473038 ; sum pieces = 0.721246523473038 ; exact equality: True ; island area cut = 0.061487784116
+
+[C4] 250 pieces of colour 4 inside the island at m; sum = 0.615272384647687, area(island) = 0.615272384647687, equal: True
+[B] sum of the 4 hexagon areas = 3.264636085785617 ; |C| = 3.264636085785617 ; equal: True
+[X] min piece area 1.674e-07 ; min turn (cross) 2.922e-09 ; min edge length 7.931e-05 ; vertices per piece 3..14 ; triangles 122
+
+RESULT: ALL CHECKS PASSED
+	Command being timed: "python -B checks/check_decomposition.py certificates/ILEP_S6A_config.json data/ILEP_S6A"
+	User time (seconds): 13.47
+	System time (seconds): 0.01
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:13.53
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 31272
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 6301
+	Voluntary context switches: 1
+	Involuntary context switches: 668
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,0 +1,29 @@
+=== recomputation ILEP_S5B : 260 pieces read
+  [exact] 260 convex pieces (true convexity: equal to their hull) ; sum of areas = |C| = 3.324376584810205
+  [exact] disjoint interiors: 18323 pairs of neighbouring pieces tested (|a|<=2, |b|<=2)
+  1254 pairs (P, Q) of the same colour whose support meets the unit circle (translations |a|<=2, |b|<=2)
+  1024 boxes : exact partition of [0, pi]
+  all box bounds recomputed (<= certificate) ; p <= 24135541/5000000000 = 0.0048271082 CONFIRMED ; < 1/192 : True ; < 1/198 : True ; < 1/203 : True ; time 328.7 s
+	Command being timed: "python -B certifier/recompute.py ILEP_S5B --dir certificates --proc 1"
+	User time (seconds): 328.65
+	System time (seconds): 0.14
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 5:28.83
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 41176
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 61
+	Minor (reclaiming a frame) page faults: 17897
+	Voluntary context switches: 8224
+	Involuntary context switches: 4529
+	Swaps: 0
+	File system inputs: 7624
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

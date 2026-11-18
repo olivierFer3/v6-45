@@ -19,7 +19,8 @@ Exact checks [E1]-[E6]:
       positive for some unit vector u). Their number is printed;
   E6  final arithmetic of the certificate: the boxes partition [0, 1] (theta = x pi),
       their bounds sum to "somme_bornes", and somme / (pi_low |C|) <= "p_majorant_lisible"
-      with pi_low = 314159265358979/10^14 < pi; comparison with 1/192, 1/198, 1/203.
+      with pi_low = 314159265358979/10^14 < pi; comparison with 1/192, ..., 1/205, 1/232,
+      1/239, 1/246 (printed only).
 
 Numerical check [N] (floating point, NOT a proof): for every box, the integral of
 F(theta) = sum over the pairs of E5 of area(P inter (Q - u(theta))) is computed with GEOS
@@ -323,7 +324,7 @@ def main():
     assert pmaj <= lis
     print(f"  [E6 exact] {len(bx)} boxes partition [0, 1] ; sum of bounds = somme_bornes ;"
           f" sum/(pi_low |C|) = {float(pmaj):.12f} <= {lis.numerator}/{lis.denominator}", flush=True)
-    for d in (192, 193, 198, 203, 204):
+    for d in (192, 193, 198, 203, 204, 205, 206, 212, 232, 239, 246):
         print(f"      bound < 1/{d} : {lis < Fr(1, d)}   ({lis.numerator}*{d} = {lis.numerator * d}"
               f" vs {lis.denominator})")
 

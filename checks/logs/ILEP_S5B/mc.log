@@ -1,0 +1,41 @@
+fichier certificates/ILEP_S5B_config.json
+pieces 260 ; translates retenus 371 ; non convexes 0 ; candidats max/case 100
+aire cellule 3.324376584810 ; somme aires pieces 3.324376584810 ; ecart 4.441e-16
+fraction d'aire par couleur 0.166877 0.238986 0.167280 0.238973 0.187884
+graine 20261120 ; N 40000000 ; lot 1000000
+      5000000 segments  p5=0.00479900  sd=3.09e-05  t=22s
+     10000000 segments  p5=0.00480450  sd=2.19e-05  t=42s
+     15000000 segments  p5=0.00480640  sd=1.79e-05  t=61s
+     20000000 segments  p5=0.00479825  sd=1.55e-05  t=81s
+     25000000 segments  p5=0.00479800  sd=1.38e-05  t=100s
+     30000000 segments  p5=0.00480150  sd=1.26e-05  t=119s
+     35000000 segments  p5=0.00481206  sd=1.17e-05  t=139s
+     40000000 segments  p5=0.00481400  sd=1.09e-05  t=158s
+RESULTAT
+segments_valides 40000000 ; segments_exclus 0
+points_non_couverts 0 ; points_couverts_strictement_par_>=2_pieces 0 ; points_sur_bord_commun (info) 0
+p5 0.0048140000 ; ecart_type 1.094e-05 ; meme_couleur 192560
+duree 158.0 s
+	Command being timed: "python -B mc_p5.py certificates/ILEP_S5B_config.json 4e7 20261120 1000000"
+	User time (seconds): 191.04
+	System time (seconds): 36.75
+	Percent of CPU this job got: 143%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:38.20
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 449204
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 12
+	Minor (reclaiming a frame) page faults: 10463783
+	Voluntary context switches: 782
+	Involuntary context switches: 2580
+	Swaps: 0
+	File system inputs: 6312
+	File system outputs: 40
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

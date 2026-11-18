@@ -1,0 +1,42 @@
+=== independent verification of ILEP_S7_93 : 104 pieces ; colours [0, 1, 2, 3, 4]
+  [E1 exact] 104/104 pieces strictly convex, CCW, equal to their hull
+  [E2 exact] sum of areas = |det(g1,g2)| = cell area = 3.264636085785617
+  [E3 exact] disjoint interiors proved by a separating edge line: 826 pairs tested (|a|<=2, |b|<=2, |t| <= 2 Rmax ~ 4.6754)
+  [E4 exact] |a| >= 2 or |b| >= 2 => every pair of points at distance > 1 (margins (k|C|-W)^2 - |g|^2 = 1.9970, 2.4285)
+  [E5 exact] 793 pairs of the same colour with dist^2 < 1 < max^2 [5.7 s]
+  [E6 exact] 1024 boxes partition [0, 1] ; sum of bounds = somme_bornes ; sum/(pi_low |C|) = 0.004110344746 <= 5137931/1250000000
+      bound < 1/192 : True   (5137931*192 = 986482752 vs 1250000000)
+      bound < 1/193 : True   (5137931*193 = 991620683 vs 1250000000)
+      bound < 1/198 : True   (5137931*198 = 1017310338 vs 1250000000)
+      bound < 1/203 : True   (5137931*203 = 1042999993 vs 1250000000)
+      bound < 1/204 : True   (5137931*204 = 1048137924 vs 1250000000)
+      bound < 1/205 : True   (5137931*205 = 1053275855 vs 1250000000)
+      bound < 1/206 : True   (5137931*206 = 1058413786 vs 1250000000)
+      bound < 1/212 : True   (5137931*212 = 1089241372 vs 1250000000)
+  [N float] p (independent integral over [0, pi]) = 0.0041080963 ; |GL10 - GL6| total = 0.00e+00
+  [N float] 1024 boxes ; bound < integral : 0 ; margin < error estimate : 2 ; min margin 3.415e-21 (box 263) ; max |GL10 - GL6| per box 1.56e-19
+  VERDICT ILEP_S7_93 : exact checks E1-E6 PASSED ; numerical check N FAILED ; certified bound p <= 5137931/1250000000 ; time 14.9 s
+Command exited with non-zero status 1
+	Command being timed: "python -B verifier/verify.py ILEP_S7_93 --dir certificates --proc 3"
+	User time (seconds): 31.95
+	System time (seconds): 1.63
+	Percent of CPU this job got: 222%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:15.06
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 51620
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 22
+	Minor (reclaiming a frame) page faults: 1140360
+	Voluntary context switches: 1862
+	Involuntary context switches: 501
+	Swaps: 0
+	File system inputs: 5880
+	File system outputs: 8
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

@@ -1,11 +1,13 @@
-"""make_figure.py -- figure of the ILEP256 colouring (one period cell and its neighbourhood, and a zoom
+"""make_figure.py -- figure of an ILEP colouring (one period cell and its neighbourhood, and a zoom
 on one island showing the boundaries of the convex pieces).
 
-Reads only an ILEP256 colouring file (<name>_config.json: lattice g1, g2 and the list of
+Reads only an ILEP colouring file (<name>_config.json: lattice g1, g2 and the list of
 convex pieces with their colour) and draws all translates P_i + a g1 + b g2 meeting a
 window around the period cell C = {s g1 + t g2 : s, t in [0, 1)}.
 
-Usage: python3 scripts/make_figure.py certificates/ILEP256_config.json note/fig_cellule.pdf
+Usage: python3 scripts/make_figure.py CONFIG.json OUTPUT.pdf
+  version 1: python3 scripts/make_figure.py certificates/ILEP256_config.json note/fig_cellule.pdf
+  version 2: python3 scripts/make_figure.py certificates/ILEP_S6A_config.json note/fig_s6a.pdf
 (Uses matplotlib; plays no role in the proof.)
 """
 import sys, json

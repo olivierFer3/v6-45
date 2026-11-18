@@ -7,3 +7,4 @@ venv/
 *.log
 *.out
 *.toc
+!checks/logs/**/*.log

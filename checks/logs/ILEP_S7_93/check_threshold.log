@@ -1,0 +1,9 @@
+ILEP_S7_93: 1024 boxes ; S/(pi_low |C|) = 0.0041103447 <= readable 5137931/1250000000 = 0.0041103448 : True
+  239 * readable = 0.9823724072 < 1 : True
+  232 * readable < 1 : True   (=> e6 >= 233 > u(49) => v6 >= 50)
+  239 * readable < 1 : True   (=> e6 >= 240 > u(50) => v6 >= 51)
+  246 * readable < 1 : False   (=> e6 >= 247 > u(51) => v6 >= 52)
+  254 * readable < 1 : False   (=> e6 >= 255 > u(52) => v6 >= 53)
+  261 * readable < 1 : False   (=> e6 >= 262 > u(53) => v6 >= 54)
+  268 * readable < 1 : False   (=> e6 >= 269 > u(54) => v6 >= 55)
+SEUIL_OK

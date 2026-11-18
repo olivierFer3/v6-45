@@ -1,0 +1,42 @@
+=== independent verification of ILEP_S5B : 260 pieces ; colours [0, 1, 2, 3, 4]
+  [E1 exact] 260/260 pieces strictly convex, CCW, equal to their hull
+  [E2 exact] sum of areas = |det(g1,g2)| = cell area = 3.324376584810205
+  [E3 exact] disjoint interiors proved by a separating edge line: 3816 pairs tested (|a|<=2, |b|<=2, |t| <= 2 Rmax ~ 4.5358)
+  [E4 exact] |a| >= 2 or |b| >= 2 => every pair of points at distance > 1 (margins (k|C|-W)^2 - |g|^2 = 3.8242, 3.7063)
+  [E5 exact] 1254 pairs of the same colour with dist^2 < 1 < max^2 [84.0 s]
+  [E6 exact] 1024 boxes partition [0, 1] ; sum of bounds = somme_bornes ; sum/(pi_low |C|) = 0.004827108114 <= 24135541/5000000000
+      bound < 1/192 : True   (24135541*192 = 4634023872 vs 5000000000)
+      bound < 1/193 : True   (24135541*193 = 4658159413 vs 5000000000)
+      bound < 1/198 : True   (24135541*198 = 4778837118 vs 5000000000)
+      bound < 1/203 : True   (24135541*203 = 4899514823 vs 5000000000)
+      bound < 1/204 : True   (24135541*204 = 4923650364 vs 5000000000)
+  [relecture] ORIGINAL verify.py: E1-E6 completed without assertion failure (N skipped)
+  [relecture] p_majorant_lisible < 1/205 : True
+  [relecture] p_majorant_lisible < 1/212 : False
+  [relecture] p_majorant_lisible < 1/218 : False
+  [relecture] p_majorant_lisible < 1/225 : False
+  [relecture] p_majorant_lisible < 1/232 : False
+  [relecture] p_majorant_lisible < 1/239 : False
+	Command being timed: "python -B checks/verify_E1E6.py ILEP_S5B certificates"
+	User time (seconds): 84.52
+	System time (seconds): 0.06
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:24.46
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 38696
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 6278
+	Voluntary context switches: 103
+	Involuntary context switches: 1100
+	Swaps: 0
+	File system inputs: 448
+	File system outputs: 24
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
