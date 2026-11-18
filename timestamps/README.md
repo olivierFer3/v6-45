@@ -10,8 +10,11 @@ public calendars, never the content.
 | `v6_45.pdf` + `v6_45.pdf.ots` | the note exactly as in commit 8a20bae (a copy of `note/v6_45.pdf` from that commit) |
 | `v6-45-audit-v5.zip` + `v6-45-audit-v5.zip.ots` | the audit archive, i.e. the `git archive` of commit 8a20bae |
 
-**Status: pending.** The proofs were created on 15 November 2026 and are not yet anchored in Bitcoin. They will be
-upgraded (`ots upgrade`) in a later commit.
+**Status: anchored in Bitcoin.** `ots upgrade` succeeded (18 November 2026) for the three proofs. They are anchored
+in **Bitcoin block 976004** (block time 2026-11-15 19:03:42 UTC). `ots verify` requires access to a Bitcoin node,
+which was not available. Instead, the Merkle root obtained from each proof was compared with the Merkle root of block
+976004 given by a public block explorer (blockstream.info): they match. This comparison relies on that explorer; it is
+not a verification by an independent node.
 
 ## How to verify
 
