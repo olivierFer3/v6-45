@@ -1,0 +1,4 @@
+v6-45 version 2 -- reference state timestamped with OpenTimestamps
+commit: 6d42bb988bd60ca5e7928b2be77b3e24fda991c5
+tree: e78f12e93d3e79d5b92bf1aded0ac0ff2a6c4155
+sha256 note/v6_51.pdf (as in this commit): 0ff0143be466431afe60fc309d5d7cddc82a6fbf99d248b6de26c6abbad945c6
