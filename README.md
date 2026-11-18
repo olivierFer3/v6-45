@@ -6,8 +6,10 @@ e6 ≥ 244 and v6 ≥ 51). The previous best published bounds were e6 ≥ 182 an
 A simpler colouring in this repository already gives e6 ≥ 193 and v6 ≥ 44.
 
 The statement holds whether or not such graphs exist. They exist if and only if χ(ℝ²) ≥ 6.
-The inequality χ(ℝ²) ≥ 6 has been announced in an OpenAI preprint (23 Sept. 2026), which we have not
-checked; that preprint does not concern the bounds proved here.
+The inequality χ(ℝ²) ≥ 6 has been announced in an OpenAI preprint, *The Euclidean plane is not five-colorable*
+(23 Sept. 2026, Theorem 1.1;
+[PDF in openai/math at commit 4eaee87](https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf)):
+statement verified, proof not audited by us. That preprint does not concern the bounds proved here.
 
 The mathematical write-up is in [`note/v6_51.pdf`](note/v6_51.pdf) (source `note/v6_51.tex`).
 
@@ -36,15 +38,19 @@ NOT reviewed by a human mathematician.**
 | **ILEP_S6A** | **presented** | 523 | 512 | 4754 | **41149783/10¹⁰ = 0.0041149783** | 243.01 | **244** | **51** |
 | ILEP_S7_93 | variant (readable island) | 104 | 93 | 793 | 5137931/(1.25·10⁹) = 0.0041103448 | 243.29 | 244 | 51 |
 
-The exact comparisons for the presented colouring are 41149783·239 = 9834798137 < 10¹⁰ (so p5 < 1/239) and
-41149783·246 = 10122846618 > 10¹⁰ (so 1/246, the next threshold, is not reached).
+The exact comparisons for the presented colouring are 41149783·243 = 9999397269 < 10¹⁰ (so p5 < 1/243) and
+41149783·246 = 10122846618 > 10¹⁰ (so 1/246, the next threshold, is not reached). The chain is:
+p5 < 1/243 ⇒ e6 > 243, i.e. e6 ≥ 244 > 239 ≥ u(50) ⇒ v6 ≥ 51. Here 239 = B(50) is the bound on u(50), not a
+threshold for p5 (the weaker p5 < 1/239 would already give e6 ≥ 240 > u(50)). The value `1/239` in the
+certification command below is only the *target* given to the certifier (field `cible` of the certificate);
+the final readable bound is then compared exactly with 1/243.
 
 **ILEP_S7_93: alert of the numerical check N.** ILEP_S7_93 has a better bound than ILEP_S6A but crosses no new
 threshold. It passes the certifier, the exact checks E1–E6 of both verifiers (this version and version 1),
 the recomputation of version 1 and the Monte Carlo check. The floating-point check N of `verifier/verify.py`
-(not a proof) **fails** on two boxes, 263 and 264: the certified box bound exceeds the floating-point integral
+(not a proof) **fails** on two boxes, 263 and 264: the certified box bound exceeds the numerical estimate of the integral
 by about 3·10⁻²¹ (relative margins 2.6·10⁻¹⁴ and 3.1·10⁻¹⁴), which is below the absolute floor 10⁻¹⁶ of the
-error estimate of N. No box bound is below the integral. A diagnostic with Gauss–Legendre rules of 10, 20 and
+error estimate of N. No box bound is below the numerical estimate of the integral. A diagnostic with Gauss–Legendre rules of 10, 20 and
 30 nodes (`checks/diag_N.py`, log `checks/logs/ILEP_S7_93/diag_N.log`) gives quadrature differences of at most
 4·10⁻²² in absolute value, 7 to 60 times smaller than the margin. The alert comes from the floor of the
 tolerance of N, not from a missing contribution: in these boxes the Arb enclosure is almost exact. The check N
@@ -88,6 +94,7 @@ itself was not changed, and its alert is not lifted by the verifier. This is why
 | `montecarlo/` | independent Monte Carlo estimate of p5 (`mc_p5.py`) and its results |
 | `scripts/reproduce.sh` | full rerun with a new label (DISQP32, ILEP256, ILEP_S6A), followed by a byte comparison with the shipped files |
 | `scripts/make_figure.py` | figures of the notes, with a zoom on one island (matplotlib; no role in the proof) |
+| `scripts/make_regions_figure.py` | figure `note/fig_s6a_regions.pdf`: the four colour regions and the island of one period cell (unions of the pieces of each colour, no splitting lines), with their measured areas and diameters (shapely, matplotlib; no role in the proof) |
 | `proofs/preuves.md`, `proofs/relecture_preuves.md`, `proofs/relecture_preuves_v4.md` | written proofs of the certification steps (in French), and two AI reviews (version 1) |
 | `proofs/decoupage.md` | version 2: proof that the validity of a certificate does not depend on the splitting into convex pieces (E1–E3 suffice for the tiling; E4 serves the completeness of the pairs) |
 | `note/` | the notes: `v6_51.tex/pdf` (version 2, figure `fig_s6a.pdf`) and `v6_45.tex/pdf` (version 1, figure `fig_cellule.pdf`) |
@@ -105,7 +112,7 @@ estimate (no role in the proof). In every ILEP configuration file `nom` is `ILEP
 
 Only `certifier/island.py` changes the construction; `core.py`, `geometry.py`, `certify.py` and
 `colourings.py` are byte-identical to version 1. `recompute.py` and `verifier/verify.py` only print more
-comparisons (1/205, 1/232, 1/239, 1/246); `verifier/u_bounds.py` extends the range of n and adds assertions.
+comparisons (1/205, 1/232, 1/239, 1/243, 1/246; verify.py also 1/207, 1/234); `verifier/u_bounds.py` extends the range of n and adds assertions.
 In `island.py`:
 - `ILE_DATA_DIR`: optional environment variable, the directory of `ILE_hexagones.json` and `ILE_ile.json`
   (default `data/input/`);
@@ -147,11 +154,18 @@ Arb certifier alone.
 - **Exact checks** (`Fraction`):
   - E1: true strict convexity;
   - E2: areas;
-  - E3: disjoint interiors, using separating edge lines;
+  - E3: disjoint interiors, using separating edge lines (bounding-box prefilter: 14691 pairs tested for
+    ILEP_S6A, whereas the certifier, with a bounding-disk prefilter and an exact intersection test, tests 78897;
+    counts from `checks/logs/ILEP_S6A/verify.log` and `certify.log`);
   - E4: |a| ≥ 2 or |b| ≥ 2 puts every pair of pieces at distance > 1, so the list of translations
     of the pairs is complete;
   - E5: exact list of the contributing pairs;
-  - E6: final arithmetic of the certificate, with π > 314159265358979/10¹⁴.
+  - E6: final arithmetic of the certificate, with π > 314159265358979/10¹⁴. E6 checks the sum of the
+    recorded box bounds, not the construction of each individual bound; that is redone by
+    `certifier/recompute.py` (same library; log `checks/logs/ILEP_S6A/recompute_v2.log`).
+- **Scope.** E1–E3 guarantee that the final pieces represent a tiling (a well-defined colouring). The
+  validity of the bound also needs the completeness of the pairs (E4–E5) and the correctness of the Arb box
+  bounds (`proofs/decoupage.md`).
 - **Numerical check N** (floating point, not a proof). For every box, the integral of F is
   recomputed with GEOS areas, explicit breakpoints and Gauss–Legendre quadrature. Every certified
   box bound must exceed it by more than an error estimate.
@@ -202,7 +216,7 @@ diff <(sed 's/"nom": "ILEP_S6A_new"/"nom": "ILEP_S6A"/' out/ILEP_S6A_new_certifi
 # 3. recomputation and second verification of the shipped certificates
 python3 -B certifier/recompute.py ILEP_S6A --dir certificates
 python3 -B verifier/verify.py ILEP_S6A --dir certificates
-python3 -B checks/check_threshold.py ILEP_S6A certificates 239
+python3 -B checks/check_threshold.py ILEP_S6A certificates 243
 python3 -B verifier/u_bounds.py
 
 # 4. the verifier of version 1 on a version-2 certificate (E1-E6)
@@ -257,7 +271,7 @@ PYTHON=venv/bin/python scripts/reproduce.sh run2
   problem*, arXiv:2008.07987v1 (2020); Geombinatorics 32(1) (2022). They introduced p_k, the
   edge bound of Lemma 2.10 and the hexagonal 4-colouring.
 - **A. D. N. J. de Grey, J. Parts**, *On lower bounds of the order of k-chromatic unit distance
-  graphs*, arXiv:2303.14714v1; Geombinatorics 32(2) (2022), 72. They replaced the disks of Gwyn–Stavrianos
+  graphs*, Geombinatorics 32(2) (2022), 72–74; arXiv:2303.14714 (v1, 2023). They replaced the disks of Gwyn–Stavrianos
   by the rounded dodecagons of Croft's tiling, rounded the bounds up and used the AP bound, obtaining
   e6 ≥ 182 and v6 ≥ 42. Their footnote 3 lists the upper bounds on u(n) used here.
 - **Polymath16 thread** (seventeenth thread, comments of 28 and 30 June 2022 by the user ag24ag24 of the Polymath16 project): the

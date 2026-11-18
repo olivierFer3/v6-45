@@ -1,0 +1,36 @@
+# recompute.py ILEP_S6A --proc 3 (version 2, after external audit), started 2026-11-18T18:48:09Z
+# command: python -B certifier/recompute.py ILEP_S6A --proc 3 (under systemd-run MemoryMax=1200M MemorySwapMax=0, /usr/bin/time -v)
+# python 3.12.3 (CPython, x86_64)
+# python-flint 0.9.0
+# numpy 2.5.4
+# mpmath 1.2.1
+# git commit of the code: fa59de37e0dbdd7f7bfc4daff4b6d4e413fe37b6 + working-tree edits (printed comparison 1/243 added in certifier/recompute.py)
+=== recomputation ILEP_S6A : 523 pieces read
+  [exact] 523 convex pieces (true convexity: equal to their hull) ; sum of areas = |C| = 3.264636085785617
+  [exact] disjoint interiors: 78897 pairs of neighbouring pieces tested (|a|<=2, |b|<=2)
+  4754 pairs (P, Q) of the same colour whose support meets the unit circle (translations |a|<=3, |b|<=3)
+  1024 boxes : exact partition of [0, pi]
+  all box bounds recomputed (<= certificate) ; p <= 41149783/10000000000 = 0.0041149783 CONFIRMED ; < 1/192 : True ; < 1/198 : True ; < 1/203 : True ; < 1/205 : True ; < 1/232 : True ; < 1/239 : True ; < 1/243 : True ; < 1/246 : False ; time 502.2 s
+	Command being timed: "python -B certifier/recompute.py ILEP_S6A --proc 3"
+	User time (seconds): 1189.96
+	System time (seconds): 0.24
+	Percent of CPU this job got: 236%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:22.26
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53696
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 31
+	Minor (reclaiming a frame) page faults: 37814
+	Voluntary context switches: 2834
+	Involuntary context switches: 29256
+	Swaps: 0
+	File system inputs: 4936
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

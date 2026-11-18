@@ -32,9 +32,10 @@ for L in "$D" "$I" "$S"; do
   $WRAP $PY -B verifier/verify.py "$L" --dir out --proc "$PROC" > "out/$L.verify.log" 2>&1
 done
 $PY -B verifier/u_bounds.py > "out/u_bounds_$SUF.log" 2>&1
-$PY -B checks/check_threshold.py "$S" out 239 > "out/$S.threshold.log" 2>&1
+# 1/239 above is only the certification target (field "cible"); the final bound is checked against 1/243
+$PY -B checks/check_threshold.py "$S" out 243 > "out/$S.threshold.log" 2>&1
 # exact threshold checks of the shipped version-2 certificates (Fraction arithmetic, a few seconds)
-for pair in ILEP_S5B:205 ILEP_S5E:232 ILEP_S6A:239 ILEP_S7_93:239; do
+for pair in ILEP_S5B:207 ILEP_S5E:234 ILEP_S6A:243 ILEP_S7_93:243; do
   $PY -B checks/check_threshold.py "${pair%%:*}" certificates "${pair##*:}" > "out/${pair%%:*}_shipped_$SUF.threshold.log" 2>&1
 done
 # compare with the shipped files (identical except for the "nom" field of the certificate)

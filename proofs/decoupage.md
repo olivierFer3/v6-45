@@ -25,7 +25,8 @@ from the JSON file and on nothing else:
 
 E1, E2 and E3 imply that the G-translates of the pieces tile the plane: they cover ℝ² and have pairwise
 disjoint interiors. Hence the colouring "colour of the piece containing the point" is well defined outside a
-null set, which is all that the areas A_PQ(u) and p5 need.
+null set, which is what the definition of the areas A_PQ(u) and of p5 needs (the validity of the
+*bound* on p5 needs more, see "Scope of E1–E3" below).
 
 ## Proof
 
@@ -45,6 +46,31 @@ None of these steps involves the hexagons, the island or the way the list was pr
 *proposes* the list; the list is checked exactly afterwards. A wrong splitting can therefore only make E1, E2
 or E3 fail, or produce another colouring, which is then valid and certified for what it is. It can never
 produce a false certificate.
+
+## Scope of E1–E3 (added after the external audit of version 2)
+
+E1–E3 guarantee only that the final pieces **represent a tiling**, hence a well-defined colouring; this is
+all that the splitting can affect. They do **not** by themselves validate the bound on p5. The validity of
+the bound also requires:
+
+- the **completeness of the contributing pairs** (E4–E5 in `verifier/verify.py`; the certifier enumerates
+  the pairs independently, and for ILEP_S5B and ILEP_S5E the two sets were compared and found equal);
+- the **correctness of the Arb box bounds** (inclusion principle of Arb, Brunn–Minkowski for (M1), the
+  Minkowski inclusion for (M2)).
+
+E6 checks the **sum of the recorded box bounds** and the final arithmetic (partition of [0, 1], sum equal to
+`somme_bornes`, division by π_low·|C|, comparison with the readable bound). It does **not** check the
+construction of each individual box bound; that is redone by `certifier/recompute.py` (same library,
+python-flint, so a recomputation rather than an independent proof; log
+`checks/logs/ILEP_S6A/recompute_v2.log`).
+
+Which program tests what, for ILEP_S6A (counts read from the logs):
+
+- the certifier (`certifier/core.py`, run by `certify.py` and again by `recompute.py`) tests the disjointness
+  of interiors on **78897** pairs (prefilter: disks centred at the mean of the vertices, exact intersection
+  area 0; `checks/logs/ILEP_S6A/certify.log`, `recompute_v1.log`, `recompute_v2.log`);
+- the second verifier (`verifier/verify.py`, E3) tests **14691** pairs (prefilter: bounding boxes; test: a
+  separating edge line; `checks/logs/ILEP_S6A/verify.log`, `verify_v1_E1E6.log`).
 
 ## Role of E4
 

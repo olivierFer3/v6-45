@@ -1,0 +1,12 @@
+ILEP_S6A: 1024 boxes ; S/(pi_low |C|) = 0.0041149782 <= readable 41149783/10000000000 = 0.0041149783 : True
+  243 * readable = 0.9999397269 < 1 : True
+  ceil(1/readable) = 244  (=> e6 >= 244)
+  205 * readable < 1 : True   (=> e6 > 205 >= u(45) => v6 >= 46)
+  212 * readable < 1 : True   (=> e6 > 212 >= u(46) => v6 >= 47)
+  218 * readable < 1 : True   (=> e6 > 218 >= u(47) => v6 >= 48)
+  225 * readable < 1 : True   (=> e6 > 225 >= u(48) => v6 >= 49)
+  232 * readable < 1 : True   (=> e6 > 232 >= u(49) => v6 >= 50)
+  239 * readable < 1 : True   (=> e6 > 239 >= u(50) => v6 >= 51)
+  246 * readable < 1 : False   (=> e6 > 246 >= u(51) => v6 >= 52)
+  254 * readable < 1 : False   (=> e6 > 254 >= u(52) => v6 >= 53)
+THRESHOLD_OK

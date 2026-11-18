@@ -3,7 +3,7 @@ arithmetic of a certificate against the threshold 1/DEN: the boxes partition [0,
 "somme_bornes", the cell area is |det(g1, g2)|, S/(pi_low |C|) <= p_majorant_lisible and
 DEN * p_majorant_lisible < 1. Also prints which of the bounds B(n) >= u(n) of verifier/u_bounds.py are beaten.
 
-Example: python3 -B checks/check_threshold.py ILEP_S6A certificates 239
+Example: python3 -B checks/check_threshold.py ILEP_S6A certificates 243
 """
 import sys, json, os
 from fractions import Fraction as Fr

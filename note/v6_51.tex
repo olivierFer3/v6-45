@@ -32,8 +32,10 @@ literature were $182$ edges and $42$ vertices (de Grey--Parts); version~1 of thi
 gave $204$ edges and $45$ vertices. The proof combines the averaging argument of Gwyn--Stavrianos with an
 explicit periodic $5$-colouring, called ILEP\_S6A, whose fifth colour is a $512$-gon placed near the
 midpoints of one hexagon edge out of four, a computer-assisted upper bound
-$p_5\le 41149783/10^{10}<1/239$ for its monochromatic unit-segment probability, obtained in exact rational
-and ball arithmetic, and the bound $u(50)\le239$ derived from Proposition~12 of \'Agoston--P\'alv\"olgyi.
+$p_5\le 41149783/10^{10}<1/243$ (since $41149783\cdot243=9999397269<10^{10}$) for its monochromatic
+unit-segment probability, obtained in exact rational and ball arithmetic, and the bound $u(50)\le239$ derived
+from Proposition~12 of \'Agoston--P\'alv\"olgyi: $p_5<1/243$ gives at least $244>239$ edges, hence at least
+$51$ vertices.
 \end{abstract}
 
 \section{Statement and context}
@@ -49,8 +51,8 @@ at least $51$ vertices.
 
 In the notation of \cite{dGP}, $e_6\ge244$ and $v_6\ge51$. The statement is unconditional: it says
 nothing about the existence of such graphs. These quantities are finite if and only if
-$\chi(\R^2)\ge6$. The inequality $\chi(\R^2)\ge6$ has been announced in an OpenAI preprint \cite{OAI},
-which we have not checked; that preprint does not concern the bounds proved here.
+$\chi(\R^2)\ge6$. The inequality $\chi(\R^2)\ge6$ has been announced in an OpenAI preprint \cite{OAI}
+(statement verified, proof not audited by us); that preprint does not concern the bounds proved here.
 
 \paragraph{Versions.} Version~1 of this note (15 November 2026) proved $e_6\ge204$ and $v_6\ge45$ with a
 colouring called ILEP256; a simpler colouring, DISQP32, gives $e_6\ge193$ and $v_6\ge44$ and remains the
@@ -93,20 +95,26 @@ $W_k=m+\rho_k(\cos\psi_k,\sin\psi_k)$, the offsets being rounded to $10^{-12}$; 
 horizontal edge shared by the hexagons $(0,0)$ and $(0,1)$, so the fifth colour covers one horizontal edge
 out of four.
 
-\paragraph{ILEP\_S6A (presented).} $R=140120428967/(2.5\cdot10^{11})\approx0.56048$ and
+\paragraph{ILEP\_S6A (presented).} $R=140120428967/250000000000\approx0.56048$ and
 $s=970782808597/10^{12}$, so that $|C|\approx3.26464$. The island has $n=512$ vertices; its centre $m$ and its
 angles $\psi_k$ are free parameters of the optimisation. The displacements are large ($|\delta|\le0.31$): the
 hexagons of colours $0$ and $2$ are sheared until each of them has one reflex vertex, with turning
 determinants $-0.063$ and $-0.065$. Both reflex vertices lie strictly inside a sector of the island, so the
 non-convex part is entirely removed by the fifth colour. The hexagons of colours $1$ and $3$ remain strictly
-convex. The colour regions have areas $0.604$, $0.721$, $0.603$, $0.721$ and $0.615$ (colours $0$--$4$), and
-diameters $1.145$, $1.116$, $1.145$, $1.121$ and $1.320$. The island is star-shaped with respect to $m$ but
+convex. In one period cell, the colour regions \emph{after removal of the islands} (the union of the pieces of each
+colour; for colours $0$--$3$, the hexagon minus the island translates) have areas $0.604$, $0.721$, $0.603$ and
+$0.721$, and the island has area $0.615$ (exact sums of the piece areas, rounded). The diameters of these
+regions (maximal distance between vertices of the pieces) are $1.145$, $1.116$, $1.145$ and $1.121$ for
+colours $0$--$3$, while the island is longer, with diameter $1.320$. (For colours $0$, $2$, $3$ the irregular
+island boundary cuts off a few tiny fragments, of total area below $3\cdot10^{-5}$; without them the diameters
+are $1.142$, $1.139$ and $1.116$.) The file \texttt{note/fig\_s6a\_regions.pdf} of the repository shows these five regions without
+the splitting lines. The island is star-shaped with respect to $m$ but
 not convex; its boundary is irregular (Figure~\ref{fig}). These numbers only describe the construction: the
 certified object is the colouring defined by the rational coordinates of the JSON file (see \emph{Exact
 definition} below).
 
-\paragraph{DISQP32 (simple example).} The hexagons are regular, up to the rounding of $s$, with $R=28360517/(5\cdot10^7)$.
-$E$ is a rational $32$-gon of circumradius $0.48498$ centred at $(0,\,122773743/(2.5\cdot10^8))$.
+\paragraph{DISQP32 (simple example).} The hexagons are regular, up to the rounding of $s$, with $R=28360517/50000000$.
+$E$ is a rational $32$-gon of circumradius $0.48498$ centred at $(0,\,122773743/250000000)$.
 
 \paragraph{Other colourings of the repository.} ILEP256 (version~1) has slightly deformed hexagons
 ($|\delta|\le0.0068$) and a $256$-vertex island centred at the midpoint of $P_1(0,0)P_0(-1,1)$ with
@@ -231,17 +239,24 @@ $p_5<1/246$, since $u(51)\le246$.
 \begin{theorem}\label{thm:cert}
 For the exact colourings defined by the JSON files,
 \[
-p(\mathrm{ILEP\_S6A})\le 41149783/10^{10}<1/239
+p(\mathrm{ILEP\_S6A})\le 41149783/10^{10}<1/243
 \qquad\text{and}\qquad
 p(\mathrm{DISQP32})\le 51864759/10^{10}<1/192 .
 \]
 Moreover $p(\mathrm{ILEP256})\le 24616771/(5\cdot10^9)<1/203$ (version~1),
-$p(\mathrm{ILEP\_S5B})\le24135541/(5\cdot10^9)<1/205$, $p(\mathrm{ILEP\_S5E})\le42565529/10^{10}<1/232$ and
-$p(\mathrm{ILEP\_S7\_93})\le5137931/(1.25\cdot10^9)<1/239$.
+$p(\mathrm{ILEP\_S5B})\le24135541/(5\cdot10^9)<1/207$, $p(\mathrm{ILEP\_S5E})\le42565529/10^{10}<1/234$ and
+$p(\mathrm{ILEP\_S7\_93})\le5137931/1250000000<1/243$.
 \end{theorem}
 
-The final comparisons are exact: $41149783\cdot239=9834798137<10^{10}$ and $51864759\cdot192=9958033728<10^{10}$.
-The bound for ILEP\_S6A does not reach $1/246$: $41149783\cdot246=10122846618>10^{10}$. The floating-point
+The final comparisons are exact: $41149783\cdot243=9999397269<10^{10}$ and $51864759\cdot192=9958033728<10^{10}$
+(and $24135541\cdot207=4996056987<5\cdot10^9$, $42565529\cdot234=9960333786<10^{10}$,
+$5137931\cdot243=1248517233<1250000000$). For ILEP\_S6A the chain is
+\[
+p_5<\tfrac1{243}\ \Longrightarrow\ e_6>243,\ \text{i.e.}\ e_6\ge244\ \Longrightarrow\ e_6>239\ge u(50)\ \Longrightarrow\ v_6\ge51 .
+\]
+(The weaker comparison $p_5<1/239$, i.e.\ $41149783\cdot239=9834798137<10^{10}$, would already give $e_6\ge240>u(50)$;
+$239=B(50)$ is the bound on $u(50)$, not the threshold for $p_5$.) The bound for ILEP\_S6A does not reach $1/246$:
+$41149783\cdot246=10122846618>10^{10}$. The floating-point
 values are $p(\mathrm{ILEP\_S6A})\approx0.0041078$ and $p(\mathrm{DISQP32})\approx0.0051253$.
 
 \paragraph{1. Exact tiling.} In rational arithmetic we check: (i) each piece is strictly
@@ -249,7 +264,9 @@ convex and counter-clockwise. This means all turns are positive \emph{and} the p
 convex hull, a test that rejects star polygons. It holds for 523/523 pieces of ILEP\_S6A. (ii) The areas
 of the pieces sum to $|C|$ exactly. (iii) Every pair $P_i$, $P_j+g$ with $(j,g)\ne(i,0)$ whose
 bounding disks meet has an intersection of area~$0$; the list of translations tested is complete, since
-$|a|\,|C|\le|t|\,|g_2|$ for $t=ag_1+bg_2$, and similarly for $b$. For ILEP\_S6A, $78897$ pairs are tested.
+$|a|\,|C|\le|t|\,|g_2|$ for $t=ag_1+bg_2$, and similarly for $b$. For ILEP\_S6A the certifier tests $78897$ pairs (prefilter: disks centred at the mean of the vertices;
+count printed in its log, and identical in the recomputation of version~1); the second verifier, with
+another prefilter (bounding boxes) and another test (a separating edge line), tests $14691$ pairs.
 Facts (i)--(iii) imply that the $G$-translates of the pieces tile the plane (Lemma~\ref{lem:tiling}).
 
 \begin{lemma}\label{lem:tiling}
@@ -270,7 +287,14 @@ merged into convex parts, before removing the islands. We do not prove that this
 general, and we do not need to: a wrong splitting could only make (i), (ii) or (iii) fail, or produce another
 colouring, which would then be valid and certified for what it is. For ILEP\_S6A, an independent exact check
 (by another splitting of the hexagons) confirms that the pieces of colour $c<4$ form exactly the hexagon of
-colour $c$ minus the islands. The completeness of the pairs in step~2 below is a separate check.
+colour $c$ minus the islands. 
+
+\emph{Scope.} Facts (i)--(iii) (checks E1--E3 in the repository) guarantee only that the final pieces
+represent a tiling, hence a well-defined colouring. The validity of the bound on $p_5$ also requires the
+completeness of the contributing pairs (E4--E5, step~2 below) and the correctness of the Arb box bounds
+(step~3). The exact check E6 of the second verifier verifies the sum of the recorded box bounds and the final
+arithmetic, not the construction of each individual box bound; the latter is redone by the recomputation
+program (\texttt{certifier/recompute.py}, same library).
 
 \paragraph{2. Reduction to areas.} Let $A_{PQ}(u)=|P\cap(Q-u)|$. Using the symmetry
 $p(\theta+\pi)=p(\theta)$, and no other symmetry, we get
@@ -318,10 +342,12 @@ recomputation, not an independent proof.
 \paragraph{Two verifiers.} A second verifier, which does not import the certifier and does not use
 python-flint, checks exactly, in Python \texttt{Fraction} arithmetic, the tiling (convexity, areas, disjoint
 interiors), the completeness of the translations, the list of contributing pairs and the rational additions of
-the box bounds, including the final comparison with $\pi>314159265358979/10^{14}$. It does \emph{not}
-recertify the box bounds in interval arithmetic. It also recomputes every box integral in floating point
+the box bounds, including the final comparison with $\pi>314159265358979/10^{14}$ (for the disjointness of
+interiors it tests $14691$ pairs of ILEP\_S6A, against $78897$ for the certifier, which uses another prefilter).
+It does \emph{not} recertify the box bounds in interval arithmetic: its check E6 verifies the sum of the recorded
+box bounds, not their individual construction, which only the recomputation program redoes. It also recomputes every box integral in floating point
 (GEOS areas, explicit breakpoints, Gauss--Legendre); this numerical check ``N'' is not a proof. For
-ILEP\_S6A all exact checks pass, every certified box bound exceeds the floating-point integral, by at least
+ILEP\_S6A all exact checks pass, every certified box bound exceeds the numerical estimate of the integral, by at least
 $5.7\cdot10^{-10}$, and the recomputed value is $p\approx0.0041078$. In addition, the \emph{unmodified}
 verifier and recomputation program of version~1 were run on ILEP\_S5B, ILEP\_S5E, ILEP\_S6A and
 ILEP\_S7\_93: all exact checks pass and every box bound is confirmed. For ILEP\_S5B and ILEP\_S5E the set of
@@ -345,23 +371,26 @@ splitting. Neither review found a decisive problem; both note that the fan split
 general, which does not affect the validity (Lemma~\ref{lem:tiling}).
 
 \paragraph{The variant ILEP\_S7\_93.} This variant has a $93$-vertex island and $104$ pieces and a better bound
-($5137931/(1.25\cdot10^9)\approx0.0041103$), but crosses no new threshold. It passes the certifier, the exact
-checks of both verifiers, the recomputation and the Monte Carlo check. The numerical check N fails on two of the
-$1024$ boxes: there the certified bound exceeds the floating-point integral by only about $3\cdot10^{-21}$
+($5137931/1250000000\approx0.0041103$), but crosses no new threshold. It passes the certifier, the exact
+checks of both verifiers, the recomputation and the Monte Carlo check. The numerical check N \textbf{fails} on two of the
+$1024$ boxes: there the certified bound exceeds the numerical estimate of the integral by only about $3\cdot10^{-21}$
 (relative margin $2.6\cdot10^{-14}$ and $3.1\cdot10^{-14}$), less than the absolute floor $10^{-16}$ of the error
-estimate of N. No box bound is below the integral, and Gauss--Legendre rules with $10$, $20$ and $30$ nodes
-differ by at most $4\cdot10^{-22}$ there, $7$ to $60$ times less than the margin. The alert reflects an almost
-exact enclosure, not a missing contribution; since N is not lifted by the verifier itself, we present ILEP\_S6A.
+estimate of N. No box bound is below the numerical estimate of the integral, and Gauss--Legendre rules with $10$, $20$ and $30$ nodes
+differ by at most $4\cdot10^{-22}$ there, $7$ to $60$ times less than the margin. We interpret the alert as an almost
+exact enclosure rather than a missing contribution, but the check N still fails for this variant and its alert is
+not lifted by the verifier; this is why we present ILEP\_S6A.
 
 \begin{remark}[heuristic: where the gain comes from]
 The following is an empirical observation, not a proof. The optimisation from ILEP256 to ILEP\_S6A shears the
-hexagons of colours $0$ and $2$ into elongated oblique shapes, enlarges them (area $0.540\to0.604$) and shrinks
-the hexagons of colours $1$ and $3$ (area $0.791\to0.721$), while the island becomes longer and its boundary
-irregular. A Monte Carlo decomposition for the intermediate colouring ILEP\_S5E ($10^7$ segments) shows that the
+hexagons of colours $0$ and $2$ into elongated oblique shapes and enlarges their colour regions (areas after
+removal of the islands $0.540\to0.604$), shrinks the regions of colours $1$ and $3$ ($0.791\to0.721$), while the
+island becomes longer (diameter $1.121\to1.320$, area $0.668\to0.615$) and its boundary irregular. A Monte Carlo decomposition for the intermediate colouring ILEP\_S5E ($10^7$ segments) shows that the
 contribution of segments with both end points in the same hexagon drops by about $29\,\%$ with respect to
 ILEP256 (from $3.54\cdot10^{-3}$ to $2.52\cdot10^{-3}$), partly offset by the island, which now contains unit
-chords ($0.11\cdot10^{-3}\to0.46\cdot10^{-3}$), and by pairs of neighbouring regions. All the regions have
-a diameter only slightly above $1$ ($1.12$--$1.15$ for the hexagons of ILEP\_S6A). A plausible explanation is
+chords ($0.11\cdot10^{-3}\to0.46\cdot10^{-3}$), and by pairs of neighbouring regions. The regions of colours $0$--$3$
+have a diameter only slightly above $1$ ($1.116$--$1.145$ for ILEP\_S6A after removal of the islands, against
+$1.132$--$1.133$ for ILEP256), whereas the island of ILEP\_S6A, of diameter $1.320$, contains many more unit
+chords than that of ILEP256 (diameter $1.121$). A plausible explanation is
 that the measure of the unit segments inside such a region depends very non-linearly on the excess of its
 diameter over $1$ and on the shape of opposite corners, so that small deformations remove many interior unit
 segments.
@@ -407,7 +436,7 @@ point sets}, arXiv:2412.11914v2 (2025).
 \bibitem{AP} P.~\'Agoston, D.~P\'alv\"olgyi, \emph{An improved constant factor for the unit distance
 problem}, arXiv:2006.06285v3 (2021); Studia Sci.\ Math.\ Hungar.\ 59 (2022) 40--57.
 \bibitem{dGP} A.~D.~N.~J.~de Grey, J.~Parts, \emph{On lower bounds of the order of $k$-chromatic unit
-distance graphs}, arXiv:2303.14714v1 (2023); Geombinatorics 32(2) (2022), 72.
+distance graphs}, Geombinatorics 32(2) (2022), 72--74; arXiv:2303.14714 (v1, 2023).
 \bibitem{flint} FLINT/Arb documentation, \url{https://flintlib.org/doc/arb/index.html}; python-flint 0.9.0.
 \bibitem{GS} H.~Gwyn, J.~Stavrianos, \emph{A finite graph approach to the probabilistic
 Hadwiger--Nelson problem}, arXiv:2008.07987v1 (2020); Geombinatorics 32(1) (2022), 5.
@@ -415,8 +444,9 @@ Hadwiger--Nelson problem}, arXiv:2008.07987v1 (2020); Geombinatorics 32(1) (2022
 sets avoiding unit distances}, Discrete Comput.\ Geom.\ 55 (2016) 642--661; arXiv:1501.00168v2.
 \bibitem{Mundinger} K.~Mundinger, M.~Zimmer, A.~Kiem, C.~Spiegel, S.~Pokutta, \emph{Neural discovery in
 mathematics: do machines dream of colored planes?}, arXiv:2501.18527v3 (ICML 2025).
-\bibitem{OAI} OpenAI, \emph{The Euclidean plane is not five-colorable}, preprint (23 Sept.\ 2026),
-\url{https://github.com/openai/math}.
+\bibitem{OAI} OpenAI, \emph{The Euclidean plane is not five-colorable}, preprint (23 Sept.\ 2026), Theorem~1.1;
+\url{https://github.com/openai/math/blob/4eaee87548250b2682affda7d05d947c05554bae/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf}
+(repository \texttt{openai/math}, commit 4eaee87). Statement verified, proof not audited by us.
 \bibitem{Parts} J.~Parts, \emph{What percent of the plane can be properly 5- and 6-colored?},
 arXiv:2010.12668; Geombinatorics 30(1).
 \bibitem{PM16} D.~G.~Mixon (blog), \emph{Polymath16, seventeenth thread: declaring victory}, comments of
